@@ -30,6 +30,13 @@ export const Full_ROUTES: Routes = [
       ),
   },
   {
+    path: "bus",
+    loadChildren: () =>
+      import("../../master-bus/master-bus.module").then(
+        (m) => m.MasterBusModule
+      ),
+  },
+  {
     path: "calendar",
     loadChildren: () =>
       import("../../calendar/calendar.module").then((m) => m.CalendarsModule),
