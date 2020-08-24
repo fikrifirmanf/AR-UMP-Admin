@@ -486,7 +486,7 @@
     ],
     "series": [
       [
-        5,
+        50,
         30,
         25,
         55,
@@ -672,8 +672,7 @@
     ]
   },
   "donutDashboard": {
-    "series": [
-      {
+    "series": [{
         "name": "done",
         "className": "ct-done",
         "value": 23
@@ -696,8 +695,7 @@
     ]
   },
   "DashboardDonut": {
-    "series": [
-      {
+    "series": [{
         "name": "done",
         "className": "ct-done",
         "value": 10
