@@ -4,41 +4,55 @@
     <div class="row text-left">
         <div class="col-12">
             <div class="content-header">{{title}}</div>
-            <button routerLink="/travel/add" class="btn btn-primary btn-fab mt-2"><i class="ft ft-plus"></i>
+            <button routerLink="/rental/add" class="btn btn-primary btn-fab mt-2"><i class="ft ft-plus"></i>
                 Tambah</button>
         </div>
     </div>
 
     <div class="row">
         <div class="col-sm-12">
-            <input type='text' style='padding:8px;margin:15px auto;width:40%;'
-                placeholder='Cari berdasarkan kota asal...' (keyup)='updateFilter($event)' />
+            <input type='text' style='padding:8px;margin:15px auto;width:30%;'
+                placeholder='Cari berdasarkan order id...' (keyup)='updateFilter($event)' />
             <ngx-datatable #table class='bootstrap' [columns]="columns" [headerHeight]="50" [footerHeight]="50"
                 [rowHeight]="'auto'" [limit]="10" [rows]='rows'>
 
-                <ngx-datatable-column prop="kotaAsal" name="Kota Asal">
+                <ngx-datatable-column prop="idTrans" name="Order ID">
                     <ng-template let-value="value" ngx-datatable-cell-template>
                         {{ value }}
                     </ng-template>
                 </ngx-datatable-column>
-                <ngx-datatable-column prop="kotaTujuan" name="Kota Tujuan">
+                <ngx-datatable-column prop="carData.platNo" name="No Kendaraan">
                     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                         {{ value }}
                     </ng-template>
                 </ngx-datatable-column>
-                <ngx-datatable-column prop="price" name="Harga">
+                <ngx-datatable-column prop="customerName" name="Nama">
                     <ng-template let-value="value" ngx-datatable-cell-template>
                         {{ value }}
                     </ng-template>
                 </ngx-datatable-column>
-                <ngx-datatable-column prop="stock" name="Stok Kursi">
+                <ngx-datatable-column prop="dateStart" name="Tanggal Rental">
                     <ng-template let-value="value" ngx-datatable-cell-template>
                         {{ value }}
                     </ng-template>
                 </ngx-datatable-column>
-                <ngx-datatable-column prop="jam" name="Jam Keberangkatan">
+                <ngx-datatable-column prop="duration" name="Durasi (hari)">
                     <ng-template let-value="value" ngx-datatable-cell-template>
-                        {{ value }}
+                        {{value}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column prop="status" name="Status">
+                    <ng-template let-value="value" ngx-datatable-cell-template>
+
+                        <div *ngIf="value == 'pending'">
+                            <span style="color: white;" class="badge badge-warning">{{value}}</span>
+                        </div>
+                        <div *ngIf="value == 'confirmed'">
+                            <span class="badge badge-success">{{value}}</span>
+                        </div>
+                        <div *ngIf="value == 'batal'">
+                            <span class="badge badge-danger">{{value}}</span>
+                        </div>
                     </ng-template>
                 </ngx-datatable-column>
 

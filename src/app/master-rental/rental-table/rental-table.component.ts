@@ -76,8 +76,9 @@ export class RentalTableComponent implements OnInit {
     const val = event.target.value.toLowerCase();
 
     // filter our data
+    console.log(this.temp);
     const temp = this.temp.filter(function (d) {
-      return d.name.toLowerCase().indexOf(val) !== -1 || !val;
+      return d.platNo.toLowerCase().indexOf(val) !== -1 || !val;
     });
 
     // update the rows

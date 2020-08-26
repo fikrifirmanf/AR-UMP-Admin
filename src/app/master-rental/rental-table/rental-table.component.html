@@ -10,7 +10,7 @@
 
   <div class="row">
     <div class="col-sm-12">
-      <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='Cari...'
+      <input type='text' style='padding:8px;margin:15px auto;width:40%;' placeholder='Cari berdasarkan no kendaraan...'
         (keyup)='updateFilter($event)' />
       <ngx-datatable #table class='bootstrap' [columns]="columns" [headerHeight]="50" [footerHeight]="50"
         [rowHeight]="'auto'" [limit]="10" [rows]='rows'>

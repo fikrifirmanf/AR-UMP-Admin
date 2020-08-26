@@ -37,6 +37,13 @@ export const Full_ROUTES: Routes = [
       ),
   },
   {
+    path: "transaksi/rental",
+    loadChildren: () =>
+      import("../../transaksi-rental/transaksi-rental.module").then(
+        (m) => m.TransaksiRentalModule
+      ),
+  },
+  {
     path: "calendar",
     loadChildren: () =>
       import("../../calendar/calendar.module").then((m) => m.CalendarsModule),

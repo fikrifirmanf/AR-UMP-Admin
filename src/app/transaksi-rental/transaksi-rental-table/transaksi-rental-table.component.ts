@@ -1,33 +1,34 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { DatatableComponent } from "@swimlane/ngx-datatable";
+import { TransaksiRentalService } from "app/services/transaksi-rental.service";
 import { FormToastrService } from "app/services/toastr.service";
-import { TravelService } from "app/services/travel.service";
+import { DatatableComponent } from "@swimlane/ngx-datatable";
 
 @Component({
-  selector: "app-travel-table",
-  templateUrl: "./travel-table.component.html",
-  styleUrls: ["./travel-table.component.css"],
+  selector: "app-transaksi-rental-table",
+  templateUrl: "./transaksi-rental-table.component.html",
+  styleUrls: ["./transaksi-rental-table.component.css"],
   providers: [FormToastrService],
 })
-export class TravelTableComponent implements OnInit {
+export class TransaksiRentalTableComponent implements OnInit {
   tData: boolean = false;
   rows = [];
-  title = "Data Travel";
+  title = "Transaksi Rental Mobil";
   temp = [];
 
   // Table Column Titles
   columns = [
-    { prop: "kotaAsal", name: "Kota Asal" },
-    { prop: "kotaTujuan", name: "Kota Tujuan" },
-    { prop: "price", name: "Harga" },
-    { prop: "stock", name: "Stok Kursi" },
-    { prop: "jam", name: "Jam Keberangkatan" },
+    { prop: "idTrans", name: "Order ID" },
+    { prop: "carData.platNo", name: "No Kendaraan" },
+    { prop: "customerName", name: "Nama" },
+    { prop: "dateStart", name: "Tanggal Rental" },
+    { prop: "duration", name: "Durasi (hari)" },
+    { prop: "status", name: "Status" },
     { prop: "_id", name: "Aksi" },
   ];
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
 
   constructor(
-    private travelService: TravelService,
+    private transRentalServ: TransaksiRentalService,
     private toast: FormToastrService
   ) {}
 
@@ -36,8 +37,9 @@ export class TravelTableComponent implements OnInit {
   }
   onShowData() {
     this.tData = true;
-    this.travelService.getAll().subscribe(
+    this.transRentalServ.getAll().subscribe(
       (resp) => {
+        console.log(resp);
         this.rows = resp["data"];
         this.temp = resp["data"];
       },
@@ -48,7 +50,7 @@ export class TravelTableComponent implements OnInit {
   onDelete(id) {
     this.tData = false;
 
-    this.travelService.delete(id).subscribe(
+    this.transRentalServ.delete(id).subscribe(
       (res) => {
         if (res["message"] === "Deleted successfully!") {
           this.toast.typeDelete();
@@ -78,7 +80,7 @@ export class TravelTableComponent implements OnInit {
 
     // filter our data
     const temp = this.temp.filter(function (d) {
-      return d.kotaAsal.toLowerCase().indexOf(val) !== -1 || !val;
+      return d.idTrans.toLowerCase().indexOf(val) !== -1 || !val;
     });
 
     // update the rows
