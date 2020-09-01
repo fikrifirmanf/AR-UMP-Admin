@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable, throwError, of } from "rxjs";
 import { map, catchError, finalize } from "rxjs/operators";
+import { env } from "app/url.constants";
 
 @Injectable({
   providedIn: "root",
@@ -9,7 +10,7 @@ import { map, catchError, finalize } from "rxjs/operators";
 export class TransaksiRentalService {
   constructor(private http: HttpClient) {}
 
-  _baseUrl = "http://13.212.50.150/api/order/";
+  private _baseUrl = env.apiUrl + "order/";
 
   getAll(): Observable<any> {
     const url = this._baseUrl + "rental";

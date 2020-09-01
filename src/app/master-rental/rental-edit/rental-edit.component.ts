@@ -17,6 +17,7 @@ export class RentalEditComponent implements OnInit {
     carModel: "",
     price: 0,
     manufacturer: "",
+    stock: 0,
   };
   title = "Data Rental Mobil";
 
@@ -43,6 +44,7 @@ export class RentalEditComponent implements OnInit {
     );
   }
   onSubmit(form: NgForm) {
+    console.log(form.value);
     this.rentalService.update(this.id, form.value).subscribe(
       (res) => {
         if (res["message"] === "Updated successfully!") {

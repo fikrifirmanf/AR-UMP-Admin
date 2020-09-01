@@ -47,6 +47,24 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="priceId">Status</label>
+                                            <div class="col-md-9">
+
+
+                                                <select class="form-control" [ngModel]='rentalData.stock' name="stock"
+                                                    id="">
+                                                    <option value=1>Tersedia</option>
+                                                    <option value=0>Tidak Tersedia</option>
+
+                                                </select>
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row last">
                                             <label class="col-md-3 label-control" for="brandId">Brand</label>
                                             <div class="col-md-9">
                                                 <input type="text" id="brandId" class="form-control border-primary"

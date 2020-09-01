@@ -1,0 +1,157 @@
+<!--Invoice template starts-->
+<div *ngIf="loading;else loaded">
+    <p>Loading...</p>
+</div>
+
+<ng-template #loaded>
+    <div class="row">
+        <div class="col">
+            <h4>Invoice</h4>
+        </div>
+        <div class="col">
+            <h4 class="float-right"><a (click)="onPrint('invoice')"><button class="btn btn-success btn-fab"><i
+                            class="fa fa-print"></i></button></a></h4>
+        </div>
+    </div>
+    <section id="invoice" class="invoice-template">
+        <div class="card">
+            <div class="card-body p-3">
+                <div id="invoice-template" class="card-block">
+                    <!-- Invoice Company Details -->
+                    <div id="invoice-company-details" class="row">
+                        <div class="col-md-6 col-sm-12 text-center text-md-left">
+                            <img src="assets/img/logos/logo-big-black.png" alt="company logo" class="mb-2" width="80"
+                                height="80">
+                            <ul class="px-0 list-unstyled">
+                                <li class="text-bold-800">The 8888 Family</li>
+                                <li>4025 Oak Avenue,</li>
+                                <li>Melbourne,</li>
+                                <li>Florida 32940,</li>
+                                <li>USA</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6 col-sm-12 text-center text-md-right">
+                            <h2>INVOICE</h2>
+                            <p class="pb-3"># INV-{{transData['idTrans']}}</p>
+
+                        </div>
+                    </div>
+                    <!--/ Invoice Company Details -->
+                    <!-- Invoice Customer Details -->
+                    <div id="invoice-customer-details" class="row pt-2">
+                        <div class="col-sm-12 text-left">
+                            <p class="text-muted">Ditujukan Kepada</p>
+                        </div>
+                        <div class="col-md-6 col-sm-12  text-center text-md-left">
+                            <ul class="px-0 list-unstyled">
+                                <li class="text-bold-800">{{transData.customerName}}</li>
+
+                                <li>{{transData.customerEmail}}</li>
+                                <li>{{transData.customerTelp}}</li>
+
+                            </ul>
+                        </div>
+                        <div class="col-md-6 col-sm-12 text-center text-md-right">
+                            <p><span class="text-muted">Tanggal Invoice :</span> {{transData.createdAt}}</p>
+                            <p><span class="text-muted">Terms :</span> Due on Receipt</p>
+                            <p><span class="text-muted">Batas Waktu :</span> {{transData.createdAt}}</p>
+                        </div>
+                    </div>
+                    <!--/ Invoice Customer Details -->
+                    <!-- Invoice Items Details -->
+                    <div id="invoice-items-details" class="pt-2">
+                        <div class="row">
+                            <div class="table-responsive col-sm-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Jenis Mobil</th>
+                                            <th class="text-right">Harga</th>
+                                            <th class="text-right">Hari</th>
+                                            <th class="text-right">Jumlah</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>
+                                                {{rentalData.platNo+'-'+rentalData.carModel}}
+                                            </td>
+                                            <td class="text-right">{{rentalData.price | currency:'IDR ':'symbol'}}</td>
+                                            <td class="text-right">{{transData.duration}}</td>
+                                            <td class="text-right">
+                                                {{transData.carData.price | currency:'IDR ':'symbol'}}</td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12 text-left">
+                                <p class="lead">Metode Pembayaran:</p>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <table class="table table-borderless table-sm">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Nama Agen:</td>
+                                                    <td class="text-right">{{transData.agentName}}</td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <h3>Total</h3>
+                                                </td>
+                                                <td class="text-right">
+                                                    <h3><b>{{transData.carData.price | currency:'IDR ':'symbol'}}</b>
+                                                    </h3>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="text-center">
+                                    <p>The 8888 Family</p>
+                                    <img src="assets/img/pages/signature-scan.png" alt="signature" class="width-250">
+                                    <h6>Paijo</h6>
+                                    <p class="text-muted">Managing Director</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Invoice Footer -->
+                    <!-- <div id="invoice-footer">
+                        <div class="row">
+                            <div class="col-md-9 col-sm-12">
+                                <h6>Terms &amp; Condition</h6>
+                                <p>You know, being a test pilot isn't always the healthiest business in the world. We
+                                    predict too
+                                    much for the next year and yet far too little for the next 10.</p>
+                            </div>
+                            <div class="col-md-3 col-sm-12 text-center">
+                                <button type="button" class="btn btn-primary btn-raised my-1"><i
+                                        class="fa fa-paper-plane-o"></i> Send
+                                    Invoice</button>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!--/ Invoice Footer -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Invoice template ends-->
+</ng-template>

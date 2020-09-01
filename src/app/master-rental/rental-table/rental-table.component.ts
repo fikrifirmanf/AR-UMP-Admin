@@ -21,6 +21,7 @@ export class RentalTableComponent implements OnInit {
     { prop: "carModel", name: "Model" },
     { prop: "price", name: "Harga" },
     { prop: "manufacturer", name: "Brand" },
+    { prop: "stock", name: "Stock" },
     { prop: "_id", name: "Aksi" },
   ];
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
@@ -35,9 +36,10 @@ export class RentalTableComponent implements OnInit {
   }
   onShowData() {
     this.tData = true;
-    this.rentalService.getAll().subscribe(
+    this.rentalService.getAll(null, null).subscribe(
       (resp) => {
         this.rows = resp["data"];
+        console.log(resp["data"]);
         this.temp = resp["data"];
       },
       (err) => console.log(err)

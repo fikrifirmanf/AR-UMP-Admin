@@ -35,6 +35,11 @@
             {{ value }}
           </ng-template>
         </ngx-datatable-column>
+        <ngx-datatable-column prop="stock" name="Stock">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{ value == 1 ? 'Tersedia':'Tidak Tersedia' }}
+          </ng-template>
+        </ngx-datatable-column>
 
         <ngx-datatable-column name="Aksi" sortable="false" prop="_id">
           <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>

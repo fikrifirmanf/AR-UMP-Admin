@@ -14,6 +14,7 @@ export class TransaksiRentalTableComponent implements OnInit {
   rows = [];
   title = "Transaksi Rental Mobil";
   temp = [];
+  totalTransaksi;
 
   // Table Column Titles
   columns = [
@@ -39,7 +40,9 @@ export class TransaksiRentalTableComponent implements OnInit {
     this.tData = true;
     this.transRentalServ.getAll().subscribe(
       (resp) => {
-        console.log(resp);
+        // console.log(resp);
+        // console.log(resp["total"][0]["total"]);
+        this.totalTransaksi = resp["total"][0]["total"];
         this.rows = resp["data"];
         this.temp = resp["data"];
       },

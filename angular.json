@@ -16,10 +16,7 @@
             "main": "src/main.ts",
             "tsConfig": "src/tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
-            "assets": [
-              "src/assets",
-              "src/favicon.ico"
-            ],
+            "assets": ["src/assets", "src/favicon.ico"],
             "styles": [
               "node_modules/sweetalert2/dist/sweetalert2.min.css",
               "src/assets/css/wizard.css",
@@ -33,12 +30,15 @@
               "node_modules/videogular2/fonts/videogular.css",
               "node_modules/@swimlane/ngx-datatable/release/index.css",
               "node_modules/@swimlane/ngx-datatable/release/assets/icons.css",
+              "node_modules/select2/dist/css/select2.min.css",
               "src/assets/css/demo.css",
               "src/assets/sass/app.scss",
               "src/styles.css"
             ],
             "scripts": [
-              "src/assets/vendor/pace/pace.min.js"
+              "src/assets/vendor/pace/pace.min.js",
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/select2/dist/js/select2.min.js"
             ]
           },
           "configurations": {
@@ -85,9 +85,7 @@
             "karmaConfig": "./karma.conf.js",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
-            "scripts": [
-              "src/assets/vendor/pace/pace.min.js"
-            ],
+            "scripts": ["src/assets/vendor/pace/pace.min.js"],
             "styles": [
               "node_modules/sweetalert2/dist/sweetalert2.min.css",
               "src/assets/css/wizard.css",
@@ -105,22 +103,14 @@
               "src/assets/sass/app.scss",
               "src/styles.css"
             ],
-            "assets": [
-              "src/assets",
-              "src/favicon.ico"
-            ]
+            "assets": ["src/assets", "src/favicon.ico"]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**/*"
-            ]
+            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**/*"]
           }
         }
       }
@@ -140,12 +130,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**/*"
-            ]
+            "tsConfig": ["e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**/*"]
           }
         }
       }

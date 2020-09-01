@@ -2,20 +2,25 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable, of, throwError } from "rxjs";
 import { map, catchError, finalize } from "rxjs/operators";
+import { env } from "app/url.constants";
 
 @Injectable({
   providedIn: "root",
 })
 export class RentalService {
   constructor(private http: HttpClient) {}
-  _baseUrl = "http://13.212.50.150/api/";
+  private _baseUrl = env.apiUrl;
   // get rental data
-  getAll(): Observable<any> {
+  getAll(stock, platNo): Observable<any> {
     const url = this._baseUrl + "cars";
+    const body = {
+      stock: stock,
+      platNo: platNo,
+    };
     const headers = {
       "X-access-token ": "test",
     };
-    return this.http.get<any>(url).pipe(
+    return this.http.post<any>(url, body).pipe(
       map((res) => res),
       catchError((err) => {
         console.log("caught mapping error and rethrowing", err);
@@ -50,7 +55,7 @@ export class RentalService {
   }
   // post data rental
   create(body): Observable<any> {
-    const url = this._baseUrl + "cars";
+    const url = this._baseUrl + "cars/add";
     const headers = {
       "Content-type": "application/json",
       // "X-access-token ": "test",

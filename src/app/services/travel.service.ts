@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable, throwError, of } from "rxjs";
 import { htmlAstToRender3Ast } from "@angular/compiler/src/render3/r3_template_transform";
 import { map, catchError, finalize } from "rxjs/operators";
+import { env } from "app/url.constants";
 
 @Injectable({
   providedIn: "root",
@@ -10,9 +11,9 @@ import { map, catchError, finalize } from "rxjs/operators";
 export class TravelService {
   constructor(private http: HttpClient) {}
 
-  baseUrl = "http://13.212.50.150/api/";
+  private _baseUrl = env.apiUrl;
   getAll(): Observable<any> {
-    const url = this.baseUrl + "travels";
+    const url = this._baseUrl + "travels";
     const headers = {};
     return this.http.get<any>(url).pipe(
       map((res) => res),
@@ -29,7 +30,7 @@ export class TravelService {
     );
   }
   getById(id): Observable<any> {
-    const url = this.baseUrl + "travels/" + id;
+    const url = this._baseUrl + "travels/" + id;
     const headers = {};
     return this.http.get<any>(url).pipe(
       map((res) => res),
@@ -47,7 +48,7 @@ export class TravelService {
   }
   // post data rental
   create(body): Observable<any> {
-    const url = this.baseUrl + "travels";
+    const url = this._baseUrl + "travels";
     const headers = {
       "Content-type": "application/json",
       // "X-access-token ": "test",
@@ -70,7 +71,7 @@ export class TravelService {
   }
   // post data rental
   update(id, body): Observable<any> {
-    const url = this.baseUrl + "travels/" + id;
+    const url = this._baseUrl + "travels/" + id;
     const headers = {
       "Content-type": "application/json",
       // "X-access-token ": "test",
@@ -93,7 +94,7 @@ export class TravelService {
   }
   // delete rental
   delete(id): Observable<any> {
-    const url = this.baseUrl + "travels/" + id;
+    const url = this._baseUrl + "travels/" + id;
     return this.http.delete<any>(url).pipe(
       map((res) => res),
       catchError((err) => {

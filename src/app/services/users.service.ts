@@ -2,13 +2,14 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable, of, throwError } from "rxjs";
 import { map, catchError, finalize } from "rxjs/operators";
+import { env } from "app/url.constants";
 
 @Injectable({
   providedIn: "root",
 })
 export class UsersService {
   constructor(private http: HttpClient) {}
-  _baseUrl = "http://13.212.50.150/api/";
+  private _baseUrl = env.apiUrl;
   getAllUsers(): Observable<any> {
     const url = this._baseUrl + "users";
     const headers = {
