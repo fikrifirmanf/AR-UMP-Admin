@@ -30,6 +30,13 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: "transaksi-travel",
+    loadChildren: () =>
+      import("./transaksi-travel/transaksi-travel.module").then(
+        (m) => m.TransaksiTravelModule
+      ),
+  },
+  {
     path: "**",
     redirectTo: "pages/error",
   },

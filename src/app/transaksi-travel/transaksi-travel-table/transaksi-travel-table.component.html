@@ -29,7 +29,7 @@
                     </div>
                 </div>
             </div>
-            <button routerLink="/transaksi/rental/add" class="btn btn-primary btn-fab mt-2"><i class="ft ft-plus"></i>
+            <button routerLink="/transaksi/travel/add" class="btn btn-primary btn-fab mt-2"><i class="ft ft-plus"></i>
                 Tambah</button>
         </div>
     </div>
@@ -38,8 +38,8 @@
         <div class="col-sm-12">
             <input type='text' style='padding:8px;margin:15px auto;width:30%;'
                 placeholder='Cari berdasarkan order id...' (keyup)='updateFilter($event)' />
-            <ngx-datatable #table class='bootstrap fixed-row' [rows]='rows' [columns]="columns" [columnMode]="'force'"
-                [headerHeight]="150" [footerHeight]="50" [scrollbarH]="true" [rowHeight]="'auto'" [limit]="10"
+            <ngx-datatable #table class='bootstrap fixed-row' [rows]='rows' [columns]="columns" [headerHeight]="150"
+                [footerHeight]="50" [scrollbarH]="true" [rowHeight]="'auto'" [limit]="10" [columnMode]="'force'"
                 [rows]='rows'>
 
                 <ngx-datatable-column prop="idTrans" name="Order ID">
@@ -47,27 +47,23 @@
                         {{ value }}
                     </ng-template>
                 </ngx-datatable-column>
-                <ngx-datatable-column prop="carData.platNo" name="No Kendaraan">
-                    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                        {{ value }}
-                    </ng-template>
-                </ngx-datatable-column>
+
                 <ngx-datatable-column prop="customerName" name="Nama">
                     <ng-template let-value="value" ngx-datatable-cell-template>
                         {{ value }}
                     </ng-template>
                 </ngx-datatable-column>
-                <ngx-datatable-column prop="dateStart" name="Tanggal Rental">
+                <ngx-datatable-column prop="departureDate" name="Tanggal Berangkat">
                     <ng-template let-value="value" ngx-datatable-cell-template>
                         {{ value }}
                     </ng-template>
                 </ngx-datatable-column>
-                <ngx-datatable-column [width]="100" prop="duration" name="Durasi(hari)">
+                <ngx-datatable-column prop="departureTime" name="Waktu Berangkat">
                     <ng-template let-value="value" ngx-datatable-cell-template>
-                        {{value}}
+                        {{ value }}
                     </ng-template>
                 </ngx-datatable-column>
-                <ngx-datatable-column [width]="100" prop="status" name="Status">
+                <ngx-datatable-column prop="status" name="Status">
                     <ng-template let-value="value" ngx-datatable-cell-template>
 
                         <div *ngIf="value == 'pending'">

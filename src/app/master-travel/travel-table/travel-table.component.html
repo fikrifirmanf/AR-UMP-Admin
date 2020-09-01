@@ -13,8 +13,8 @@
         <div class="col-sm-12">
             <input type='text' style='padding:8px;margin:15px auto;width:40%;'
                 placeholder='Cari berdasarkan kota asal...' (keyup)='updateFilter($event)' />
-            <ngx-datatable #table class='bootstrap' [columns]="columns" [headerHeight]="50" [footerHeight]="50"
-                [rowHeight]="'auto'" [limit]="10" [rows]='rows'>
+            <ngx-datatable #table class='bootstrap' [scrollbarH]="true" [columnMode]="'force'" [columns]="columns"
+                [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10" [rows]='rows'>
 
                 <ngx-datatable-column prop="kotaAsal" name="Kota Asal">
                     <ng-template let-value="value" ngx-datatable-cell-template>
@@ -38,7 +38,7 @@
                 </ngx-datatable-column>
                 <ngx-datatable-column prop="jam" name="Jam Keberangkatan">
                     <ng-template let-value="value" ngx-datatable-cell-template>
-                        {{ value }}
+                        {{ value.toString() }}
                     </ng-template>
                 </ngx-datatable-column>
 
