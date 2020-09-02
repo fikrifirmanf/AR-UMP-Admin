@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { TransaksiTravelTableComponent } from "./transaksi-travel-table/transaksi-travel-table.component";
 import { TransaksiTravelAddFormComponent } from "./transaksi-travel-add-form/transaksi-travel-add-form.component";
+import { TransaksiTravelInvoiceComponent } from "./transaksi-travel-invoice/transaksi-travel-invoice.component";
 
 const routes: Routes = [
   {
@@ -14,6 +15,13 @@ const routes: Routes = [
   {
     path: "add",
     component: TransaksiTravelAddFormComponent,
+    data: {
+      title: "Transaksi Travel",
+    },
+  },
+  {
+    path: "invoice/:id",
+    component: TransaksiTravelInvoiceComponent,
     data: {
       title: "Transaksi Travel",
     },

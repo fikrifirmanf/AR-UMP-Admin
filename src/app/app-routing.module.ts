@@ -36,6 +36,7 @@ const appRoutes: Routes = [
         (m) => m.TransaksiTravelModule
       ),
   },
+  { path: 'transaksi-coachbus', loadChildren: () => import('./transaksi-coachbus/transaksi-coachbus.module').then(m => m.TransaksiCoachbusModule) },
   {
     path: "**",
     redirectTo: "pages/error",

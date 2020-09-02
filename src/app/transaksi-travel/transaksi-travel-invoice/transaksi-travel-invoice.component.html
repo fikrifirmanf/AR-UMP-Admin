@@ -32,7 +32,7 @@
                         </div>
                         <div class="col-md-6 col-sm-12 text-center text-md-right">
                             <h2>INVOICE</h2>
-                            <p class="pb-3"># INV-{{transData['idTrans']}}</p>
+                            <p class="pb-3"># INV-{{transaksiTravelList['idTrans']}}</p>
 
                         </div>
                     </div>
@@ -44,17 +44,17 @@
                         </div>
                         <div class="col-md-6 col-sm-12  text-center text-md-left">
                             <ul class="px-0 list-unstyled">
-                                <li class="text-bold-800">{{transData.customerName}}</li>
+                                <li class="text-bold-800">{{transaksiTravelList.customerName}}</li>
 
-                                <li>{{transData.customerEmail}}</li>
-                                <li>{{transData.customerTelp}}</li>
+                                <li>{{transaksiTravelList.customerEmail}}</li>
+                                <li>{{transaksiTravelList.customerTelp}}</li>
 
                             </ul>
                         </div>
                         <div class="col-md-6 col-sm-12 text-center text-md-right">
-                            <p><span class="text-muted">Tanggal Invoice :</span> {{transData.createdAt}}</p>
+                            <p><span class="text-muted">Tanggal Invoice :</span> {{transaksiTravelList.createdAt}}</p>
                             <p><span class="text-muted">Terms :</span> Due on Receipt</p>
-                            <p><span class="text-muted">Batas Waktu :</span> {{transData.createdAt}}</p>
+                            <p><span class="text-muted">Batas Waktu :</span> {{transaksiTravelList.createdAt}}</p>
                         </div>
                     </div>
                     <!--/ Invoice Customer Details -->
@@ -66,9 +66,12 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Jenis Mobil</th>
+                                            <th>Jurusan</th>
+
+                                            <th class="text-right">Tanggal</th>
                                             <th class="text-right">Harga</th>
-                                            <th class="text-right">Hari</th>
+                                            <th class="text-right">Over Price</th>
+                                            <th class="text-right">Kursi</th>
                                             <th class="text-right">Jumlah</th>
                                         </tr>
                                     </thead>
@@ -76,12 +79,20 @@
                                         <tr>
                                             <th scope="row">1</th>
                                             <td>
-                                                {{rentalData.platNo+'-'+rentalData.carModel}}
+                                                {{transaksiTravelList.travelData.from+'-'+transaksiTravelList.travelData.destination}}
                                             </td>
-                                            <td class="text-right">{{rentalData.price | currency:'IDR ':'symbol'}}</td>
-                                            <td class="text-right">{{transData.duration}}</td>
                                             <td class="text-right">
-                                                {{transData.carData.price | currency:'IDR ':'symbol'}}</td>
+                                                {{transaksiTravelList.departureDate+' '+transaksiTravelList.departureTime}}
+                                            </td>
+                                            <td class="text-right">
+                                                {{transaksiTravelList.travelData.price | currency:'IDR ':'symbol'}}
+                                            </td>
+                                            <td class="text-right">
+                                                {{transaksiTravelList.overPrice | currency:'IDR ':'symbol'}}</td>
+                                            <td class="text-right">{{transaksiTravelList.totalSeat}}</td>
+                                            <td class="text-right">
+                                                {{transaksiTravelList.travelData.price + transaksiTravelList.overPrice | currency:'IDR ':'symbol'}}
+                                            </td>
                                         </tr>
 
                                     </tbody>
@@ -97,7 +108,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td>Nama Agen:</td>
-                                                    <td class="text-right">{{transData.agentName}}</td>
+                                                    <td class="text-right">{{transaksiTravelList.agentName}}</td>
                                                 </tr>
 
                                             </tbody>
@@ -115,7 +126,7 @@
                                                     <h3>Total</h3>
                                                 </td>
                                                 <td class="text-right">
-                                                    <h3><b>{{transData.carData.price | currency:'IDR ':'symbol'}}</b>
+                                                    <h3><b>{{transaksiTravelList.travelData.price + transaksiTravelList.overPrice | currency:'IDR ':'symbol'}}</b>
                                                     </h3>
                                                 </td>
                                             </tr>

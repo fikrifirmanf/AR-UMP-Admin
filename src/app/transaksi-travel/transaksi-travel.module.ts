@@ -9,11 +9,13 @@ import { FormsModule } from "@angular/forms";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { NgSelect2Module } from "ng-select2";
 import { MomentModule } from "ngx-moment";
+import { TransaksiTravelInvoiceComponent } from './transaksi-travel-invoice/transaksi-travel-invoice.component';
 
 @NgModule({
   declarations: [
     TransaksiTravelTableComponent,
     TransaksiTravelAddFormComponent,
+    TransaksiTravelInvoiceComponent,
   ],
   imports: [
     CommonModule,

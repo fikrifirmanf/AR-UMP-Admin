@@ -51,6 +51,13 @@ export const Full_ROUTES: Routes = [
       ),
   },
   {
+    path: "transaksi/bus",
+    loadChildren: () =>
+      import("../../transaksi-coachbus/transaksi-coachbus.module").then(
+        (m) => m.TransaksiCoachbusModule
+      ),
+  },
+  {
     path: "calendar",
     loadChildren: () =>
       import("../../calendar/calendar.module").then((m) => m.CalendarsModule),
