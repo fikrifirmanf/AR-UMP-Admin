@@ -34,6 +34,10 @@ export class FormToastrService {
   typeError() {
     this.toastr.error("Data gagal disimpan, coba periksa kembali", "Gagal");
   }
+  // Success Type
+  typeAuthFailed() {
+    this.toastr.error("Login gagal! Username atau Password Salah!");
+  }
 
   // Custom Type
   typeCustom() {

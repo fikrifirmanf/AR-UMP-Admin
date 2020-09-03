@@ -6,7 +6,11 @@ import { AppRoutingModule } from "./app-routing.module";
 import { SharedModule } from "./shared/shared.module";
 import { ToastrModule } from "ngx-toastr";
 import { AgmCoreModule } from "@agm/core";
-import { HttpClientModule, HttpClient } from "@angular/common/http";
+import {
+  HttpClientModule,
+  HttpClient,
+  HTTP_INTERCEPTORS,
+} from "@angular/common/http";
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { StoreModule } from "@ngrx/store";
@@ -22,8 +26,11 @@ import { ContentLayoutComponent } from "./layouts/content/content-layout.compone
 import { FullLayoutComponent } from "./layouts/full/full-layout.component";
 
 import { DragulaService } from "ng2-dragula";
-import { AuthService } from "./shared/auth/auth.service";
+import { AuthService } from "../app/services/auth.service";
 import { AuthGuard } from "./shared/auth/auth-guard.service";
+import { LoginPageComponent } from "./login-page/login-page.component";
+import { AuthInterceptor } from "./shared/auth/auth.config.interceptor";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -35,13 +42,20 @@ export function createTranslateLoader(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [AppComponent, FullLayoutComponent, ContentLayoutComponent],
+  declarations: [
+    AppComponent,
+    FullLayoutComponent,
+    ContentLayoutComponent,
+    LoginPageComponent,
+  ],
   imports: [
     BrowserAnimationsModule,
     StoreModule.forRoot({}),
     AppRoutingModule,
     SharedModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     ToastrModule.forRoot(),
     NgbModule.forRoot(),
     TranslateModule.forRoot({
@@ -58,6 +72,11 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   providers: [
     AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
     AuthGuard,
     DragulaService,
     {

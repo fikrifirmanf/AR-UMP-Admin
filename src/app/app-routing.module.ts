@@ -8,12 +8,17 @@ import { Full_ROUTES } from "./shared/routes/full-layout.routes";
 import { CONTENT_ROUTES } from "./shared/routes/content-layout.routes";
 
 import { AuthGuard } from "./shared/auth/auth-guard.service";
+import { LoginPageComponent } from "./login-page/login-page.component";
 
 const appRoutes: Routes = [
   {
     path: "",
-    redirectTo: "dashboard",
+    redirectTo: "/login",
     pathMatch: "full",
+  },
+  {
+    path: "login",
+    component: LoginPageComponent,
   },
   {
     path: "",
@@ -36,7 +41,13 @@ const appRoutes: Routes = [
         (m) => m.TransaksiTravelModule
       ),
   },
-  { path: 'transaksi-coachbus', loadChildren: () => import('./transaksi-coachbus/transaksi-coachbus.module').then(m => m.TransaksiCoachbusModule) },
+  {
+    path: "transaksi-coachbus",
+    loadChildren: () =>
+      import("./transaksi-coachbus/transaksi-coachbus.module").then(
+        (m) => m.TransaksiCoachbusModule
+      ),
+  },
   {
     path: "**",
     redirectTo: "pages/error",

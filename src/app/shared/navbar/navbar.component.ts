@@ -1,13 +1,21 @@
-import { Component, Output, EventEmitter, OnDestroy, OnInit, AfterViewInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { LayoutService } from '../services/layout.service';
-import { Subscription } from 'rxjs';
-import { ConfigService } from '../services/config.service';
+import {
+  Component,
+  Output,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  AfterViewInit,
+} from "@angular/core";
+import { TranslateService } from "@ngx-translate/core";
+import { LayoutService } from "../services/layout.service";
+import { Subscription } from "rxjs";
+import { ConfigService } from "../services/config.service";
+import { AuthService } from "app/services/auth.service";
 
 @Component({
   selector: "app-navbar",
   templateUrl: "./navbar.component.html",
-  styleUrls: ["./navbar.component.scss"]
+  styleUrls: ["./navbar.component.scss"],
 })
 export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   currentLang = "en";
@@ -20,19 +28,23 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public config: any = {};
 
-  constructor(public translate: TranslateService, private layoutService: LayoutService, private configService:ConfigService) {
+  constructor(
+    private authService: AuthService,
+    public translate: TranslateService,
+    private layoutService: LayoutService,
+    private configService: ConfigService
+  ) {
     const browserLang: string = translate.getBrowserLang();
     translate.use(browserLang.match(/en|es|pt|de/) ? browserLang : "en");
 
-    this.layoutSub = layoutService.changeEmitted$.subscribe(
-      direction => {
-        const dir = direction.direction;
-        if (dir === "rtl") {
-          this.placement = "bottom-left";
-        } else if (dir === "ltr") {
-          this.placement = "bottom-right";
-        }
-      });
+    this.layoutSub = layoutService.changeEmitted$.subscribe((direction) => {
+      const dir = direction.direction;
+      if (dir === "rtl") {
+        this.placement = "bottom-left";
+      } else if (dir === "ltr") {
+        this.placement = "bottom-right";
+      }
+    });
   }
 
   ngOnInit() {
@@ -40,7 +52,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    if(this.config.layout.dir) {
+    if (this.config.layout.dir) {
       setTimeout(() => {
         const dir = this.config.layout.dir;
         if (dir === "rtl") {
@@ -49,7 +61,6 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
           this.placement = "bottom-right";
         }
       }, 0);
-     
     }
   }
 
@@ -82,5 +93,8 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
     } else {
       this.toggleHideSidebar.emit(true);
     }
+  }
+  logout() {
+    this.authService.doLogout();
   }
 }
