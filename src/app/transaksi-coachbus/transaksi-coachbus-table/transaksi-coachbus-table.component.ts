@@ -59,5 +59,14 @@ export class TransaksiCoachbusTableComponent implements OnInit {
     // Whenever the filter changes, always go back to the first page
     this.table.offset = 0;
   }
-  onDelete() {}
+  onDelete(id) {
+    this.transCoachBus.delete(id).subscribe((resp) => {
+      if (resp["message"] == "Deleted successfully!") {
+        this.toast.typeDelete();
+        this.onShow();
+      } else {
+        this.toast.typeError();
+      }
+    });
+  }
 }

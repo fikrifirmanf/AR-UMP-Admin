@@ -49,4 +49,41 @@ export class TransaksiCoachBusService {
       finalize(() => null)
     );
   }
+  create(body): Observable<any> {
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    return this.http.post(this._baseUrl + "/add", body, { headers }).pipe(
+      map((res) => res),
+      catchError((err) => {
+        console.log("Mapping error", err);
+        return throwError(err);
+      }),
+      finalize(() => null),
+      catchError((err) => {
+        console.log("Rethrown error", err);
+        return of([]);
+      }),
+      finalize(() => null)
+    );
+  }
+
+  delete(id): Observable<any> {
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    return this.http.delete(this._baseUrl + "/" + id, { headers }).pipe(
+      map((res) => res),
+      catchError((err) => {
+        console.log("Mapping error ", err);
+        return throwError(err);
+      }),
+      finalize(() => null),
+      catchError((err) => {
+        console.log("Rethrown mapping error", err);
+        return of([]);
+      }),
+      finalize(() => null)
+    );
+  }
 }

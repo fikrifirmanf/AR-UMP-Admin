@@ -29,7 +29,7 @@
                     </div>
                 </div>
             </div>
-            <button routerLink="/transaksi/travel/add" class="btn btn-primary btn-fab mt-2"><i class="ft ft-plus"></i>
+            <button routerLink="/transaksi/bus/add" class="btn btn-primary btn-fab mt-2"><i class="ft ft-plus"></i>
                 Tambah</button>
         </div>
     </div>
@@ -55,7 +55,7 @@
                 </ngx-datatable-column>
                 <ngx-datatable-column prop="dateStart" name="Tanggal Pesan">
                     <ng-template let-value="value" ngx-datatable-cell-template>
-                        {{ value }}
+                        {{ value[0] }}
                     </ng-template>
                 </ngx-datatable-column>
                 <ngx-datatable-column prop="duration" name="Durasi (hari)">

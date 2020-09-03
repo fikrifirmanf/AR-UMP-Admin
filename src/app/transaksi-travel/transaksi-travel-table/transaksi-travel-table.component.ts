@@ -34,6 +34,22 @@ export class TransaksiTravelTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.onShowData();
+    this.getArrayDate();
+  }
+
+  getArrayDate() {
+    var listDate = [];
+    var startDate = "2017-02-01";
+    var endDate = "2017-02-10";
+    var dateMove = new Date(startDate);
+    var strDate = startDate;
+
+    while (strDate < endDate) {
+      var strDate = dateMove.toISOString().slice(0, 10);
+      listDate.push(strDate);
+      dateMove.setDate(dateMove.getDate() + 1);
+    }
+    console.log(listDate);
   }
 
   onShowData() {
@@ -43,6 +59,7 @@ export class TransaksiTravelTableComponent implements OnInit {
         this.rows = resp["data"];
         this.rows = resp["data"];
         console.log(resp);
+        console.log();
       },
       (err) => {
         console.log(err);
