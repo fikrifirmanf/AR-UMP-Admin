@@ -1,15 +1,15 @@
-import { Component, ViewChild, OnInit } from "@angular/core";
-import { DatatableComponent } from "@swimlane/ngx-datatable/release";
-import { UsersService } from "../../services/users.service";
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { DatatableComponent } from "@swimlane/ngx-datatable";
+import { UsersService } from "app/services/users.service";
 
 @Component({
-  selector: "app-users-table",
-  templateUrl: "./users-table.component.html",
-  styleUrls: ["./users-table.component.css"],
+  selector: "app-users-travel",
+  templateUrl: "./users-travel.component.html",
+  styleUrls: ["./users-travel.component.css"],
 })
-export class UsersTableComponent implements OnInit {
+export class UsersTravelComponent implements OnInit {
   rows = [];
-  title = "Admin";
+  title = "Agen Travel";
   temp = [];
 
   // Table Column Titles
@@ -28,7 +28,7 @@ export class UsersTableComponent implements OnInit {
     this.onShow();
   }
   onShow() {
-    this.userService.getUserType("admin").subscribe(
+    this.userService.getUserType("travel").subscribe(
       (resp) => {
         this.rows = resp["data"];
         this.temp = resp["data"];
@@ -37,6 +37,16 @@ export class UsersTableComponent implements OnInit {
       (err) => console.log(err)
     );
   }
+
+  // testUsers() {
+  //   this.userService.getAllUsers().subscribe(
+  //     (resp) => {
+  //       this.rows = resp["data"];
+  //       this.temp = resp["data"];
+  //     },
+  //     (err) => console.log(err)
+  //   );
+  // }
 
   updateFilter(event) {
     const val = event.target.value.toLowerCase();

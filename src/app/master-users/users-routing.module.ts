@@ -2,16 +2,40 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
 import { UsersTableComponent } from "./users-table/users-table.component";
+import { UsersTravelComponent } from "./users-travel/users-travel.component";
+import { UsersRentalComponent } from "./users-rental/users-rental.component";
+import { UsersBusComponent } from "./users-bus/users-bus.component";
 
 const routes: Routes = [
   {
     path: "",
     children: [
       {
-        path: "rental",
+        path: "admin",
         component: UsersTableComponent,
         data: {
-          title: "Agen Rental Mobil",
+          title: "Admin",
+        },
+      },
+      {
+        path: "rental",
+        component: UsersRentalComponent,
+        data: {
+          title: "Agen Rental",
+        },
+      },
+      {
+        path: "travel",
+        component: UsersTravelComponent,
+        data: {
+          title: "Agen Travel",
+        },
+      },
+      {
+        path: "bus",
+        component: UsersBusComponent,
+        data: {
+          title: "Agen Coach Bus",
         },
       },
     ],

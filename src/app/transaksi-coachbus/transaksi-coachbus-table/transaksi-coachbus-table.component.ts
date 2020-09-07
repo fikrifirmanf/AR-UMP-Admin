@@ -41,7 +41,11 @@ export class TransaksiCoachbusTableComponent implements OnInit {
   onShow() {
     this.transCoachBus.getAll().subscribe((resp) => {
       console.log(resp);
-      this.totalTransaksi = resp["total"][0]["total"];
+      if (resp["total"].length == 0) {
+        this.totalTransaksi = 0;
+      } else {
+        this.totalTransaksi = resp["total"][0]["total"];
+      }
       this.rows = resp["data"];
       this.temp = resp["data"];
     });

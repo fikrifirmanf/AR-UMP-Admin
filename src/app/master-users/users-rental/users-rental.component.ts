@@ -1,15 +1,15 @@
-import { Component, ViewChild, OnInit } from "@angular/core";
-import { DatatableComponent } from "@swimlane/ngx-datatable/release";
-import { UsersService } from "../../services/users.service";
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { DatatableComponent } from "@swimlane/ngx-datatable";
+import { UsersService } from "app/services/users.service";
 
 @Component({
-  selector: "app-users-table",
-  templateUrl: "./users-table.component.html",
-  styleUrls: ["./users-table.component.css"],
+  selector: "app-users-rental",
+  templateUrl: "./users-rental.component.html",
+  styleUrls: ["./users-rental.component.css"],
 })
-export class UsersTableComponent implements OnInit {
+export class UsersRentalComponent implements OnInit {
   rows = [];
-  title = "Admin";
+  title = "Agen Rental";
   temp = [];
 
   // Table Column Titles
@@ -28,7 +28,7 @@ export class UsersTableComponent implements OnInit {
     this.onShow();
   }
   onShow() {
-    this.userService.getUserType("admin").subscribe(
+    this.userService.getUserType("rental").subscribe(
       (resp) => {
         this.rows = resp["data"];
         this.temp = resp["data"];

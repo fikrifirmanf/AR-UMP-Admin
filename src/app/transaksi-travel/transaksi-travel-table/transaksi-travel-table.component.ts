@@ -55,7 +55,12 @@ export class TransaksiTravelTableComponent implements OnInit {
   onShowData() {
     this.transTravelService.getAll().subscribe(
       (resp) => {
-        this.totalTransaksi = resp["total"][0]["total"];
+        if (resp["total"].length == 0) {
+          this.totalTransaksi = 0;
+        } else {
+          this.totalTransaksi = resp["total"][0]["total"];
+        }
+
         this.rows = resp["data"];
         this.rows = resp["data"];
         console.log(resp);

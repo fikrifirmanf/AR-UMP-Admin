@@ -42,7 +42,11 @@ export class TransaksiRentalTableComponent implements OnInit {
       (resp) => {
         // console.log(resp);
         // console.log(resp["total"][0]["total"]);
-        this.totalTransaksi = resp["total"][0]["total"];
+        if (resp["total"].length == 0) {
+          this.totalTransaksi = 0;
+        } else {
+          this.totalTransaksi = resp["total"][0]["total"];
+        }
         this.rows = resp["data"];
         this.temp = resp["data"];
       },
