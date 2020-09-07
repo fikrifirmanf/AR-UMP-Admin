@@ -23,6 +23,7 @@ export class AuthService {
     return (
       this.http.post<any>(this._baseUrl, user).subscribe((res) => {
         localStorage.setItem("access_token", res.token);
+
         this.currentUser = res;
         if (res.status == "Unauthorized") {
           console.log(res.message);

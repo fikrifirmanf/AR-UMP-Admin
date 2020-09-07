@@ -1,0 +1,209 @@
+<!-- Basic form layout section start -->
+<section id="basic-form-layouts">
+    <div class="row text-left">
+        <div class="col-sm-12">
+            <div class="content-header">{{title}}</div>
+        </div>
+    </div>
+
+    <div class="row text-left">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-content">
+                    <div class="px-3">
+                        <form class="form form-horizontal form-bordered" #f="ngForm">
+                            <div class="form-body">
+                                <h4 class="form-section"><i class="ft-info"></i> Pilih</h4>
+                                <div class="row">
+                                    <div class="form-group col-md-6 mb-2">
+                                        <label for="issueinput3">Pilih Transaksi</label>
+                                        <select class="form-control" name="transaksi" ngModel id="transaksi">
+                                            <option value="coachbus">Coach Bus</option>
+                                            <option value="rental">Rental</option>
+                                            <option value="travel">Travel</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6 mb-2">
+                                        <label for="issueinput3">Pilih Transaksi</label>
+                                        <select class="form-control" name="status" ngModel id="status">
+                                            <option value="dibayar">Dibayar</option>
+                                            <option value="pending">Pending</option>
+                                            <option value="dibatalkan">Dibatalkan</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6 mb-2">
+                                        <label for="issueinput3">Tanggal Awal</label>
+                                        <input type="date" id="issueinput3" class="form-control" ngModel
+                                            name="dateStart" data-toggle="tooltip" data-trigger="hover"
+                                            data-placement="top" data-title="Date Opened">
+                                    </div>
+                                    <div class="form-group col-md-6 mb-2">
+                                        <label for="issueinput4">Tanggal Akhir</label>
+                                        <input type="date" id="issueinput4" class="form-control" ngModel
+                                            name="dateFinish" data-toggle="tooltip" data-trigger="hover"
+                                            data-placement="top" data-title="Date Fixed">
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="form-actions right">
+                                <button type="button" (click)="onSubmit(f)" class="btn btn-raised btn-warning mr-1">
+                                    <i class="fa fa-search"></i> Cek
+                                </button>
+
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Invoice template starts-->
+<div *ngIf="loading;else loaded">
+
+</div>
+
+<ng-template #loaded>
+    <div class="row">
+        <div class="col">
+            <h4>Report</h4>
+        </div>
+        <div class="col">
+            <h4 class="float-right"><a (click)="onPrint('reportTemplate')"><button class="btn btn-success btn-fab"><i
+                            class="fa fa-print"></i></button></a></h4>
+        </div>
+
+    </div>
+    <section id="reportTemplate" class="invoice-template">
+        <div class="card">
+            <div class="card-body p-3">
+                <div id="invoice-template" class="card-block">
+                    <!-- Invoice Company Details -->
+                    <div id="invoice-company-details" class="row">
+                        <div class="col-md-6 col-sm-12 text-center text-md-left">
+                            <img src="assets/img/logos/logo-big-black.png" alt="company logo" class="mb-2" width="80"
+                                height="80">
+                            <ul class="px-0 list-unstyled">
+                                <li class="text-bold-800">The 8888 Family</li>
+                                <li>Jl. Gatot Subroto 67 A,</li>
+                                <li>Sokanegara,</li>
+                                <li>Purwokerto 53115,</li>
+                                <li>Jawa Tengah</li><br>
+                                <h4>{{titleLaporan}}</h4>
+                            </ul>
+                        </div>
+                        <div class="col-md-6 col-sm-12 text-center text-md-right">
+
+                            <p class="pb-3">{{'Tanggal cetak : '+dateNow}}</p>
+
+                        </div>
+                    </div>
+                    <!--/ Invoice Company Details -->
+
+
+                    <!-- Invoice Items Details -->
+                    <div id="invoice-items-details" class="pt-2">
+                        <div class="row">
+                            <div class="table-responsive col-sm-12">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <!-- <th>#</th> -->
+                                            <th>Order Id</th>
+                                            <th>Nama</th>
+                                            <th>Tanggal</th>
+                                            <th>Harga</th>
+                                            <!-- <th class="text-right">Harga</th>
+                                            <th class="text-right">Hari</th>
+                                            <th class="text-right">Jumlah</th> -->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of listTrans">
+                                            <!-- <th scope="row">1</th> -->
+                                            <td>{{item['idTrans']}}</td>
+                                            <td>{{item['customerName']}} </td>
+                                            <td>{{item['createdAt']|date: 'dd-MM-yyyy':'GMT+7'}}</td>
+                                            <td>{{(transaksiTitle == 'travel'?item['travelData']['price']:transaksiTitle == 'rental'?item['carData']['price']:item['price']) | currency: 'Rp ':'symbol':'3.0'}}
+                                            </td>
+                                            <!-- <td class="text-right">{{rentalData.price | currency:'IDR ':'symbol'}}</td>
+                                            <td class="text-right">{{transData.duration}}</td>
+                                            <td class="text-right">
+                                                {{transData.carData.price | currency:'IDR ':'symbol'}}</td> -->
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12 text-left">
+
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <h4>Total Transaksi</h4>
+                                                </td>
+
+                                                <td class="text-right">
+                                                    <h4><b>{{listTrans.length}}</b>
+                                                    </h4>
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h4>Total</h4>
+                                                </td>
+                                                <td class="text-right">
+                                                    <h4><b>{{totalPrice | currency: 'Rp ':'symbol':'3.0'}}</b>
+                                                    </h4>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="text-center">
+                                    <p>The 8888 Family</p>
+                                    <img src="assets/img/pages/signature-scan.png" alt="signature" class="width-250">
+                                    <h6>Johanes Jullianto</h6>
+                                    <p class="text-muted">Managing Director</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Invoice Footer -->
+                    <!-- <div id="invoice-footer">
+                        <div class="row">
+                            <div class="col-md-9 col-sm-12">
+                                <h6>Terms &amp; Condition</h6>
+                                <p>You know, being a test pilot isn't always the healthiest business in the world. We
+                                    predict too
+                                    much for the next year and yet far too little for the next 10.</p>
+                            </div>
+                            <div class="col-md-3 col-sm-12 text-center">
+                                <button type="button" class="btn btn-primary btn-raised my-1"><i
+                                        class="fa fa-paper-plane-o"></i> Send
+                                    Invoice</button>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!--/ Invoice Footer -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Invoice template ends-->
+</ng-template>

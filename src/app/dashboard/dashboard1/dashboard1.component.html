@@ -6,7 +6,7 @@
 				<div class="card-body pt-2 pb-0">
 					<div class="media">
 						<div class="media-body white text-left">
-							<h3 class="font-large-1 mb-0">5</h3>
+							<h3 class="font-large-1 mb-0">{{statistikList.totalUser}}</h3>
 							<span>Total Users</span>
 						</div>
 						<div class="media-right white text-right">
@@ -29,8 +29,10 @@
 				<div class="card-body pt-2 pb-0">
 					<div class="media">
 						<div class="media-body white text-left">
-							<h3 class="font-large-1 mb-0">500000</h3>
-							<span>Total Pendapatan (Rupiah)</span>
+							<h3 class="font-large-1 mb-0">
+								{{statistikList.rental| currency:'Rp. ':'symbol':'3.0'}}
+							</h3>
+							<span>Total Pendapatan Rental</span>
 						</div>
 						<div class="media-right white text-right">
 							<i class="fa fa-car font-large-1"></i>
@@ -54,8 +56,10 @@
 				<div class="card-body pt-2 pb-0">
 					<div class="media">
 						<div class="media-body white text-left">
-							<h3 class="font-large-1 mb-0">6000000</h3>
-							<span>Total Pendapatan Travel (Rupiah)</span>
+							<h3 class="font-large-1 mb-0">
+								{{statistikList.travel| currency:'Rp. ':'symbol':'3.0'}}
+							</h3>
+							<span>Total Pendapatan Travel</span>
 						</div>
 						<div class="media-right white text-right">
 							<i class="fa fa-car font-large-1"></i>
@@ -77,8 +81,10 @@
 				<div class="card-body pt-2 pb-0">
 					<div class="media">
 						<div class="media-body white text-left">
-							<h3 class="font-large-1 mb-0">4000000</h3>
-							<span>Total Pendapatan Bus (Rupiah)</span>
+							<h3 class="font-large-1 mb-0">
+								{{statistikList.coachbus| currency:'Rp. ':'symbol':'3.0'}}
+							</h3>
+							<span>Total Pendapatan Bus</span>
 						</div>
 						<div class="media-right white text-right">
 							<i class="fa fa-bus font-large-1"></i>
@@ -102,16 +108,16 @@
 	<div class="col-sm-12">
 		<div class="card">
 			<div class="card-header">
-				<h4 class="card-title">PRODUCTS SALES</h4>
+				<h4 class="card-title">TRAFFIC</h4>
 			</div>
 			<div class="card-content">
 				<div class="card-body">
-					<div class="chart-info mb-3 ml-3">
+					<!-- <div class="chart-info mb-3 ml-3">
 						<span class="gradient-blackberry d-inline-block rounded-circle mr-1"
 							style="width:15px; height:15px;"></span> Sales
 						<span class="gradient-mint d-inline-block rounded-circle mr-1 ml-2"
 							style="width:15px; height:15px;"></span> Visits
-					</div>
+					</div> -->
 					<div id="line-area" class="height-350 lineArea">
 						<x-chartist [data]="lineArea.data" [type]="lineArea.type" [options]="lineArea.options"
 							[responsiveOptions]="lineArea.responsiveOptions" [events]="lineArea.events">
@@ -124,7 +130,7 @@
 </div>
 <!--Line with Area Chart 1 Ends-->
 
-<div class="row" matchHeight="card">
+<!-- <div class="row" matchHeight="card">
 	<div class="col-xl-4 col-lg-12 col-12">
 		<div class="card">
 			<div class="card-header">
@@ -470,4 +476,4 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->

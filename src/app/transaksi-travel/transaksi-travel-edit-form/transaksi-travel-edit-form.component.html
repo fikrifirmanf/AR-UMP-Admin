@@ -1,0 +1,230 @@
+<!-- Basic form layout section start -->
+<section id="basic-form-layouts">
+    <div class="row text-left">
+        <div class="col-sm-12">
+            <div class="content-header">{{ title }}</div>
+        </div>
+    </div>
+
+    <div class="row text-left">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-content">
+                    <div class="px-3">
+                        <form class="form form-horizontal form-bordered" (ngSubmit)="onSubmit(f)" #f="ngForm">
+                            <div class="form-body">
+                                <h4 class="form-section">
+                                    <i class="ft-info"></i> Ubah Transaksi
+                                </h4>
+                                <p><i>Untuk menghindari ketidaksinkronan data diharapkan untuk ubah data secara teliti,
+                                        bila perlu hanya status transaksi saja yang di ubah</i></p>
+                                <div class="row">
+                                    <!-- <div class="col-md-6">
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="travelDataId">Jurusan</label>
+                                            <div class="col-md-9">
+                                                <ng-select2 class="col-md-9 border-primary" id="travelDataId"
+                                                    (ngModelChange)="onShowJam(f)" [options]="options"
+                                                    [ngModel]="travelList.idTravel" name="idTravel"
+                                                    [data]="destinationList" [placeholder]="'Pilih jurusan'">
+                                                </ng-select2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="tgl-berangkat">Tanggal
+                                                Berangkat</label>
+                                            <div class="col-md-9">
+                                                <input type="date" datetime="dd-mm-yyyy" required id="tgl-berangkat"
+                                                    class="form-control border-primary" (ngModelChange)="onShowStock(f)"
+                                                    ngModel name="departureDate" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 required label-control" for="jam-berangkat">Jam
+                                                Berangkat</label>
+                                            <div class="col-md-9">
+                                                <ng-select2 class="col-md-9 border-primary" id="departureTime"
+                                                    (ngModelChange)="onShowStock(f)" [options]="options"
+                                                    [ngModel]="travelList.departureTime" name="departureTime"
+                                                    [data]="travelDataJamList" [placeholder]="'Pilih jam :'">
+                                                </ng-select2>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <!-- <div class="col-md-6">
+                                        <div class="form-group row last">
+                                            <div class="col-md-9">
+                                                <h3 class="float-right">
+                                                    Stok Kursi : {{ stockAvailable }}
+                                                </h3>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                </div>
+
+                                <div class="row">
+                                    <!-- <div class="col-md-6">
+                              <div class="form-group row last">
+                                <label class="col-md-3 label-control" for="priceId">Harga (Rp.)</label>
+                                <div class="col-md-9">
+                                  <input type="number" readonly value="{{price}}" id="priceId" class="form-control border-primary"
+                                    placeholder="250000" [(ngModel)]="price" name="price" />
+                                </div>
+                              </div>
+                            </div> -->
+                                    <!-- <div class="col-md-6">
+                              <div class="form-group row last">
+                                <label class="col-md-3 label-control" for="jml-hari">Jumlah Hari</label>
+                                <div class="col-md-9">
+                                  <input type="number" required id="jml-hari" (ngModelChange)="onClik(f)"
+                                    class="form-control border-primary" ngModel name="duration" />
+                                </div>
+                              </div>
+                            </div> -->
+
+                                    <input type="text" hidden required id="customer-name"
+                                        class="form-control border-primary" placeholder="Wahyudi..."
+                                        [ngModel]="travelList.departureDate" name="departureDate" />
+                                    <input type="text" required hidden id="customer-name"
+                                        class="form-control border-primary" placeholder="Wahyudi..."
+                                        [ngModel]="travelList.departureTime" name="departureTime" />
+                                    <input type="text" hidden required id="customer-name"
+                                        class="form-control border-primary" placeholder="Wahyudi..."
+                                        [ngModel]="travelList.travelData._id" name="idTravel" />
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="customer-name">Nama
+                                                Pelanggan</label>
+                                            <div class="col-md-9">
+                                                <input type="text" required id="customer-name"
+                                                    class="form-control border-primary" placeholder="Wahyudi..."
+                                                    [ngModel]="travelList.customerName" name="customerName" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="customer-email">Email</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="customer-email"
+                                                    class="form-control border-primary" placeholder="(Opsional)"
+                                                    [ngModel]="travelList.customerEmail" name="customerEmail" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="customer-telp">No
+                                                Telp</label>
+                                            <div class="col-md-9">
+                                                <input type="text" required id="customer-telp"
+                                                    class="form-control border-primary" placeholder="082838xxxx"
+                                                    [ngModel]="travelList.customerTelp" name="customerTelp" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="from">From</label>
+                                            <div class="col-md-9">
+                                                <input type="text" required id="from"
+                                                    class="form-control border-primary" placeholder="From..."
+                                                    [ngModel]="travelList.travelData.from" name="from" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="from">To</label>
+                                            <div class="col-md-9">
+                                                <input type="text" required id="to" class="form-control border-primary"
+                                                    placeholder="to..." [ngModel]="travelList.travelData.destination"
+                                                    name="destination" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="from">Price</label>
+                                            <div class="col-md-9">
+                                                <input type="number" required id="to"
+                                                    class="form-control border-primary" placeholder="200000"
+                                                    [ngModel]="travelList.travelData.price" ngModel name="price" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="from">Over Price</label>
+                                            <div class="col-md-9">
+                                                <input type="number" required id="to"
+                                                    class="form-control border-primary" placeholder="200000"
+                                                    [ngModel]="travelList.overPrice" name="overPrice" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="agent-name">Jumlah
+                                                Kursi</label>
+                                            <div class="col-md-9">
+                                                <input type="number" required id="agent-name"
+                                                    class="form-control border-primary" placeholder="5"
+                                                    [ngModel]="travelList.totalSeat" name="totalSeat" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="agent-name">Agen</label>
+                                            <div class="col-md-9">
+                                                <input type="text" required id="agent-name"
+                                                    class="form-control border-primary" value="Admin"
+                                                    placeholder="Admin" [ngModel]="travelList.agentName"
+                                                    name="agentName" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="status">Status</label>
+                                            <div class="col-md-9">
+                                                <select name="status" required id="status"
+                                                    class="form-control border-primary" [ngModel]="travelList.status">
+                                                    <option value="none" selected="" disabled="">
+                                                        Pilih status transaksi :
+                                                    </option>
+                                                    <option value="pending">Pending</option>
+                                                    <option value="dibayar">Dibayar</option>
+                                                    <option value="dibatalkan">Dibatalkan</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="form-actions right">
+                                <button type="button" class="btn btn-raised btn-warning mr-1">
+                                    <i class="ft-x"></i> Batal
+                                </button>
+                                <button type="submit" class="btn btn-raised btn-primary">
+                                    <i class="fa fa-check-square-o"></i> Simpan
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

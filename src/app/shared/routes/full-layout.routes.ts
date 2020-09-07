@@ -58,6 +58,13 @@ export const Full_ROUTES: Routes = [
       ),
   },
   {
+    path: "report",
+    loadChildren: () =>
+      import("../../print-report/print-report/print-report.module").then(
+        (m) => m.PrintReportModule
+      ),
+  },
+  {
     path: "calendar",
     loadChildren: () =>
       import("../../calendar/calendar.module").then((m) => m.CalendarsModule),

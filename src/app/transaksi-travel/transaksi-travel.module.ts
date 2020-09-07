@@ -10,12 +10,14 @@ import { NgSelectModule } from "@ng-select/ng-select";
 import { NgSelect2Module } from "ng-select2";
 import { MomentModule } from "ngx-moment";
 import { TransaksiTravelInvoiceComponent } from './transaksi-travel-invoice/transaksi-travel-invoice.component';
+import { TransaksiTravelEditFormComponent } from './transaksi-travel-edit-form/transaksi-travel-edit-form.component';
 
 @NgModule({
   declarations: [
     TransaksiTravelTableComponent,
     TransaksiTravelAddFormComponent,
     TransaksiTravelInvoiceComponent,
+    TransaksiTravelEditFormComponent,
   ],
   imports: [
     CommonModule,

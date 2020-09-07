@@ -9,12 +9,14 @@ import { TransaksiCoachbusAddFormComponent } from "./transaksi-coachbus-add-form
 import { NgSelect2Module } from "ng-select2";
 import { FormsModule } from "@angular/forms";
 import { TransaksiCoachbusInvoiceComponent } from './transaksi-coachbus-invoice/transaksi-coachbus-invoice.component';
+import { TransaksiCoachbusEditFormComponent } from './transaksi-coachbus-edit-form/transaksi-coachbus-edit-form.component';
 
 @NgModule({
   declarations: [
     TransaksiCoachbusTableComponent,
     TransaksiCoachbusAddFormComponent,
     TransaksiCoachbusInvoiceComponent,
+    TransaksiCoachbusEditFormComponent,
   ],
   imports: [
     CommonModule,

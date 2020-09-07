@@ -1,0 +1,183 @@
+<!-- Basic form layout section start -->
+<section id="basic-form-layouts">
+    <div class="row text-left">
+        <div class="col-sm-12">
+            <div class="content-header">{{ title }}</div>
+        </div>
+    </div>
+
+    <div class="row text-left">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-content">
+                    <div class="px-3">
+                        <form class="form form-horizontal form-bordered" (ngSubmit)="onSubmit(f)" #f="ngForm">
+                            <div class="form-body">
+                                <h4 class="form-section">
+                                    <i class="ft-info"></i> Ubah Transaksi
+                                </h4>
+                                <p><i>Untuk menghindari ketidaksinkronan data diharapkan untuk ubah data secara teliti,
+                                        bila perlu hanya status transaksi saja yang di ubah</i></p>
+                                <div class="row">
+
+                                    <div class="col-md-6">
+
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="tgl-berangkat">Jumlah
+                                                Hari</label>
+                                            <div class="col-md-9">
+                                                <input type="text" readonly required id="tgl-berangkat"
+                                                    class="form-control border-primary" ngModel
+                                                    [(ngModel)]="transDataList.duration" name="duration" />
+
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="tgl-berangkat">Tanggal
+                                                Berangkat</label>
+                                            <div class="col-md-9">
+                                                <input type="text" readonly required id="tgl-berangkat"
+                                                    class="form-control border-primary" ngModel
+                                                    [(ngModel)]="transDataList.dateStart[0]" name="dateStart" />
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 required label-control" for="jam-berangkat">Jam
+                                                Berangkat</label>
+                                            <div class="col-md-9">
+                                                <input type="time" required id="jam-berangkat"
+                                                    class="form-control border-primary"
+                                                    [(ngModel)]="transDataList.departureTime" name="departureTime" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="customer-name">Nama
+                                                Pelanggan</label>
+                                            <div class="col-md-9">
+                                                <input type="text" required id="customer-name"
+                                                    class="form-control border-primary" placeholder="Wahyudi..."
+                                                    [(ngModel)]="transDataList.customerName" name="customerName" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="customer-email">Email</label>
+                                            <div class="col-md-9">
+                                                <input type="email" id="customer-email"
+                                                    class="form-control border-primary" placeholder="(Opsional)"
+                                                    [(ngModel)]="transDataList.customerEmail" name="customerEmail" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="customer-email">Titik
+                                                Akses</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="customer-email"
+                                                    class="form-control border-primary"
+                                                    placeholder="Wangon, RT 03,RW 02, ...."
+                                                    [(ngModel)]="transDataList.addressPoint" name="addressPoint" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="customer-telp">No
+                                                Telp</label>
+                                            <div class="col-md-9">
+                                                <input type="text" required id="customer-telp"
+                                                    class="form-control border-primary" placeholder="082838xxxx"
+                                                    [(ngModel)]="transDataList.customerTelp" name="customerTelp" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="agent-name">Jumlah
+                                                Bus</label>
+                                            <div class="col-md-9">
+                                                <input type="number" required id="agent-name"
+                                                    class="form-control border-primary" placeholder="5"
+                                                    [(ngModel)]="transDataList.totalBus" name="totalBus" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="from">Harga Total</label>
+                                            <div class="col-md-9">
+                                                <input type="number" required readonly id="to"
+                                                    class="form-control border-primary" placeholder="200000"
+                                                    [ngModel]="transDataList.price" name="price" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="agent-name">Agen</label>
+                                            <div class="col-md-9">
+                                                <input type="text" required id="agent-name"
+                                                    class="form-control border-primary" value="Admin"
+                                                    placeholder="Admin" [(ngModel)]="transDataList.agentName"
+                                                    name="agentName" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="status">Status</label>
+                                            <div class="col-md-9">
+                                                <select name="status" required id="status"
+                                                    class="form-control border-primary"
+                                                    [(ngModel)]="transDataList.status">
+                                                    <option value="none" selected="" disabled="">
+                                                        Pilih status transaksi :
+                                                    </option>
+                                                    <option value="pending">Pending</option>
+                                                    <option value="dibayar">Dibayar</option>
+                                                    <option value="dibatalkan">Dibatalkan</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-actions right">
+                                <button type="button" class="btn btn-raised btn-warning mr-1">
+                                    <i class="ft-x"></i> Batal
+                                </button>
+                                <button type="submit" class="btn btn-raised btn-primary">
+                                    <i class="fa fa-check-square-o"></i> Simpan
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

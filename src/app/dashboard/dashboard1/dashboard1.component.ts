@@ -2,7 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import * as Chartist from "chartist";
 import { ChartType, ChartEvent } from "ng-chartist";
 import { TransaksiRentalService } from "app/services/transaksi-rental.service";
-import { DatePipe, formatDate } from "@angular/common";
+import { DatePipe } from "@angular/common";
+import { SettingsAppService } from "app/services/settings-app.service";
 
 declare var require: any;
 
@@ -25,18 +26,46 @@ export interface Chart {
 export class Dashboard1Component implements OnInit {
   constructor(
     public transRentalServ: TransaksiRentalService,
-    private datePipe: DatePipe
+
+    private statistikServ: SettingsAppService
   ) {}
   tgl;
   // Line area chart configuration Starts
   ngOnInit() {
+    this.showStatistik();
     this.getTransRental();
   }
+
+  statistikList = {
+    totalUser: 0,
+    rental: 0,
+    travel: 0,
+    coachbus: 0,
+  };
   transRentalList = [];
   chartDataRental = {
     labels: [],
     series: [[], []],
   };
+
+  showStatistik() {
+    this.statistikServ.getAll().subscribe(
+      (resp) => {
+        this.statistikList.totalUser = resp["data"]["totalUser"];
+        this.statistikList.rental =
+          resp["data"].totalTransaksiRental[0].totalTransaksi;
+        this.statistikList.travel =
+          resp["data"].totalTransaksiTravel[0].totalTransaksi;
+        this.statistikList.coachbus =
+          resp["data"].totalTransaksiCoachBus[0].totalTransaksi;
+        // console.log(resp["data"]);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
   getTransRental() {
     this.transRentalServ.getAll().subscribe(
       (resp) => {
