@@ -5,6 +5,8 @@ import { UsersTableComponent } from "./users-table/users-table.component";
 import { UsersTravelComponent } from "./users-travel/users-travel.component";
 import { UsersRentalComponent } from "./users-rental/users-rental.component";
 import { UsersBusComponent } from "./users-bus/users-bus.component";
+import { UsersAddFormComponent } from "./users-add-form/users-add-form.component";
+import { UserEditFormComponent } from "./user-edit-form/user-edit-form.component";
 
 const routes: Routes = [
   {
@@ -36,6 +38,20 @@ const routes: Routes = [
         component: UsersBusComponent,
         data: {
           title: "Agen Coach Bus",
+        },
+      },
+      {
+        path: "add",
+        component: UsersAddFormComponent,
+        data: {
+          title: "Tambah Data",
+        },
+      },
+      {
+        path: "edit/:id",
+        component: UserEditFormComponent,
+        data: {
+          title: "Edit Data",
         },
       },
     ],

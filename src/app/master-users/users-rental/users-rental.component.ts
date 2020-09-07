@@ -1,11 +1,13 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { DatatableComponent } from "@swimlane/ngx-datatable";
 import { UsersService } from "app/services/users.service";
+import { FormToastrService } from "app/services/toastr.service";
 
 @Component({
   selector: "app-users-rental",
   templateUrl: "./users-rental.component.html",
   styleUrls: ["./users-rental.component.css"],
+  providers: [FormToastrService],
 })
 export class UsersRentalComponent implements OnInit {
   rows = [];
@@ -19,11 +21,14 @@ export class UsersRentalComponent implements OnInit {
     { prop: "email", name: "Email" },
     { prop: "mobileNum", name: "No HP" },
     { prop: "address", name: "Alamat" },
-    { prop: "action", name: "Aksi" },
+    { prop: "_id", name: "Aksi" },
   ];
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
 
-  constructor(private userService: UsersService) {}
+  constructor(
+    private toast: FormToastrService,
+    private userService: UsersService
+  ) {}
   ngOnInit() {
     this.onShow();
   }
@@ -50,5 +55,22 @@ export class UsersRentalComponent implements OnInit {
     this.rows = temp;
     // Whenever the filter changes, always go back to the first page
     this.table.offset = 0;
+  }
+
+  onDelete(id) {
+    this.userService.delete(id).subscribe(
+      (resp) => {
+        if (resp["message"] == "Deleted successfully!") {
+          this.toast.typeDelete();
+          this.onShow();
+        } else {
+          this.toast.typeError();
+        }
+      },
+      (err) => {
+        console.log(err);
+        this.toast.typeError();
+      }
+    );
   }
 }

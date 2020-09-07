@@ -38,15 +38,15 @@
                         {{ value }}
                     </ng-template>
                 </ngx-datatable-column>
-                <ngx-datatable-column name="Aksi" sortable="false" prop="action">
+                <ngx-datatable-column name="Aksi" sortable="false" prop="_id">
                     <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                         {{column.name}}
                     </ng-template>
                     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                        <button class="btn btn-warning btn-fab mr-2" (click)="null">
-                            <i class="ft ft-edit"></i>
-                        </button>
-                        <button class="btn btn-danger btn-fab" (click)="null">
+                        <a [routerLink]="['/users/edit',value]"> <button class="btn btn-warning btn-fab mr-2">
+                                <i class="ft ft-edit"></i>
+                            </button></a>
+                        <button class="btn btn-danger btn-fab" (click)="onDelete(value)">
                             <i class="ft ft-trash"></i>
                         </button>
                     </ng-template>

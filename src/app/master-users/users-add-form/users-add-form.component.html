@@ -1,0 +1,109 @@
+<!-- Basic form layout section start -->
+<section id="basic-form-layouts">
+    <div class="row text-left">
+        <div class="col-sm-12">
+            <div class="content-header">{{title}}</div>
+        </div>
+    </div>
+
+    <div class="row text-left">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-content">
+                    <div class="px-3">
+                        <form class="form form-horizontal form-bordered" (ngSubmit)="onSubmit(f)" #f="ngForm">
+                            <div class="form-body">
+                                <h4 class="form-section"><i class="ft-info"></i> Tambah Data</h4>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="platNo">Nama</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="platNo" class="form-control border-primary"
+                                                    placeholder="Agus ..." ngModel name="name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="model">Username</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="model" class="form-control border-primary"
+                                                    placeholder="agusbaik" ngModel name="username">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="model">No Telp</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="model" class="form-control border-primary"
+                                                    placeholder="0851235678" ngModel name="mobileNum">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="priceId">Password</label>
+                                            <div class="col-md-9">
+                                                <input type="password" id="priceId" class="form-control border-primary"
+                                                    placeholder="*****" ngModel name="password">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="brandId">Email</label>
+                                            <div class="col-md-9">
+                                                <input type="email" id="brandId" class="form-control border-primary"
+                                                    placeholder="agus@email.com" ngModel name="email">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="brandId">alamat</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="brandId" class="form-control border-primary"
+                                                    placeholder="Wangon, rt 01/ rw 01, Kec. Wangon, Kab. Bayumas ..."
+                                                    ngModel name="address">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="brandId">Role</label>
+                                            <div class="col-md-9">
+                                                <select class="form-control border-primary" ngModel name="userType">
+                                                    <option value="admin">Admin</option>
+                                                    <option value="coachbus">Agen Coach Bus</option>
+                                                    <option value="rental">Agen Rental Mobil</option>
+                                                    <option value="travel">Agen Travel</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="form-actions right">
+                                <button type="button" class="btn btn-raised btn-warning mr-1">
+                                    <i class="ft-x"></i> Batal
+                                </button>
+                                <button type="submit" class="btn btn-raised btn-primary">
+                                    <i class="fa fa-check-square-o"></i> Simpan
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

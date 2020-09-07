@@ -22,6 +22,16 @@ export const ROUTES: RouteInfo[] = [
     isExternalLink: false,
     submenu: [
       {
+        path: "/users/add",
+        title: "Tambah User",
+        icon: "fa fa-plus",
+        class: "",
+        badge: "",
+        badgeClass: "",
+        isExternalLink: false,
+        submenu: [],
+      },
+      {
         path: "/users/admin",
         title: "Admin",
         icon: "",
