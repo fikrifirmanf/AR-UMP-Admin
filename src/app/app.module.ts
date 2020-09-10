@@ -31,6 +31,8 @@ import { AuthGuard } from "./shared/auth/auth-guard.service";
 import { LoginPageComponent } from "./login-page/login-page.component";
 import { AuthInterceptor } from "./shared/auth/auth.config.interceptor";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { BrowserModule, Title } from "@angular/platform-browser";
+import { PathLocationStrategy, LocationStrategy } from "@angular/common";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -49,6 +51,7 @@ export function createTranslateLoader(http: HttpClient) {
     LoginPageComponent,
   ],
   imports: [
+    BrowserModule,
     BrowserAnimationsModule,
     StoreModule.forRoot({}),
     AppRoutingModule,
@@ -71,6 +74,9 @@ export function createTranslateLoader(http: HttpClient) {
     PerfectScrollbarModule,
   ],
   providers: [
+    { provide: LocationStrategy, 
+      useClass: PathLocationStrategy },
+    Title,
     AuthService,
     {
       provide: HTTP_INTERCEPTORS,

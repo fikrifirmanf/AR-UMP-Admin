@@ -1,9 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, AfterViewInit } from "@angular/core";
 import * as Chartist from "chartist";
 import { ChartType, ChartEvent } from "ng-chartist";
 import { TransaksiRentalService } from "app/services/transaksi-rental.service";
 import { DatePipe } from "@angular/common";
 import { SettingsAppService } from "app/services/settings-app.service";
+import { Title } from "@angular/platform-browser";
+import { AuthService } from "app/services/auth.service";
+import { UsersService } from "app/services/users.service";
 
 declare var require: any;
 
@@ -23,19 +26,42 @@ export interface Chart {
   styleUrls: ["./dashboard1.component.scss"],
   providers: [DatePipe],
 })
-export class Dashboard1Component implements OnInit {
+export class Dashboard1Component implements OnInit, AfterViewInit {
   constructor(
+    private titleServ: Title,
     public transRentalServ: TransaksiRentalService,
-
-    private statistikServ: SettingsAppService
+    private settingServ: SettingsAppService,
+    private statistikServ: SettingsAppService,
+    private authServ: AuthService,
+    private userServ: UsersService
   ) {}
   tgl;
+
   // Line area chart configuration Starts
   ngOnInit() {
+    this.checkUser();
+  }
+  ngAfterViewInit() {
+    this.getSettings();
+
     this.showStatistik();
     this.getTransRental();
   }
 
+  checkUser() {
+    this.userServ.getById(localStorage.getItem("user_id")).subscribe((resp) => {
+      if (resp["data"]["userType"] != "admin") {
+        window.alert("Access not allowed!");
+        this.authServ.doLogout();
+      }
+    });
+  }
+
+  getSettings() {
+    this.settingServ.getById().subscribe((resp) => {
+      this.titleServ.setTitle(resp["data"]["titleApp"] + " - Dashboard");
+    });
+  }
   statistikList = {
     totalUser: 0,
     rental: 0,

@@ -23,6 +23,7 @@ export class TransaksiRentalTableComponent implements OnInit {
     { prop: "customerName", name: "Nama" },
     { prop: "dateStart", name: "Tanggal Rental" },
     { prop: "duration", name: "Durasi (hari)" },
+    { prop: "agentName", name: "Agen" },
     { prop: "status", name: "Status" },
     { prop: "_id", name: "Aksi" },
   ];

@@ -23,6 +23,7 @@ export class TransaksiCoachbusTableComponent implements OnInit {
     { prop: "dateStart", name: "Tanggal Pesan" },
     { prop: "duration", name: "Durasi (hari)" },
     { prop: "totalBus", name: "Total" },
+    { prop: "agentName", name: "Agen" },
     { prop: "status", name: "Status" },
     { prop: "_id", name: "Aksi" },
   ];

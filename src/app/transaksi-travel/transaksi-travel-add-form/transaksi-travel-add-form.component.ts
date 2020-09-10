@@ -29,6 +29,7 @@ export class TransaksiTravelAddFormComponent implements OnInit {
     price: 0,
     overPrice: 0,
   };
+  addressPoint = "";
   stockAvailable = 0;
   listDataTravelUpdate;
   loading = true;
@@ -113,21 +114,25 @@ export class TransaksiTravelAddFormComponent implements OnInit {
     );
   }
   onSubmit(form: NgForm) {
-    console.log(form.value);
-    this.transTravelService.create(form.value).subscribe(
-      (resp) => {
-        console.log(resp);
-        if (resp["message"] === "Data created successfully!") {
-          this.toast.typeSuccess();
-          this.router.navigateByUrl("transaksi/travel");
-        } else {
+    if (form.controls["totalSeat"].value > this.stockAvailable) {
+      this.toast.typeErrorStock();
+    } else {
+      console.log(form.value);
+      this.transTravelService.create(form.value).subscribe(
+        (resp) => {
+          console.log(resp);
+          if (resp["message"] === "Data created successfully!") {
+            this.toast.typeSuccess();
+            this.router.navigateByUrl("transaksi/travel");
+          } else {
+            this.toast.typeError();
+          }
+        },
+        (err) => {
           this.toast.typeError();
+          console.log(err);
         }
-      },
-      (err) => {
-        this.toast.typeError();
-        console.log(err);
-      }
-    );
+      );
+    }
   }
 }

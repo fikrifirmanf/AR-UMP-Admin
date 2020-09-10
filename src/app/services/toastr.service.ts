@@ -34,6 +34,13 @@ export class FormToastrService {
   typeError() {
     this.toastr.error("Data gagal disimpan, coba periksa kembali", "Gagal");
   }
+  // Error stock
+  typeErrorStock() {
+    this.toastr.error(
+      "Input transaksi gagal, stock tersedia kurang dari stok yang diinput, silahkan cek ulang!",
+      "Gagal"
+    );
+  }
   typeErrorUsername() {
     this.toastr.error(
       "Username sudah ada, harap pakai username yang lain",

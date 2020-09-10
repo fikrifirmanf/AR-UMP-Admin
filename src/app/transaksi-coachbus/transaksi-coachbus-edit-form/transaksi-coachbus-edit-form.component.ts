@@ -52,7 +52,7 @@ export class TransaksiCoachbusEditFormComponent implements OnInit {
       (resp) => {
         if (resp["message"] === "Updated successfully!") {
           this.toast.typeSuccess();
-          this.router.navigateByUrl("transaksi/travel");
+          this.router.navigateByUrl("transaksi/bus");
         } else {
           this.toast.typeError();
         }

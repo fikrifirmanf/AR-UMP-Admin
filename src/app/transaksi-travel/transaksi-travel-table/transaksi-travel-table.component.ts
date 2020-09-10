@@ -22,6 +22,7 @@ export class TransaksiTravelTableComponent implements OnInit {
     { prop: "customerName", name: "Nama" },
     { prop: "departureDate", name: "Tanggal Keberangkatan" },
     { prop: "departureTime", name: "Waktu Keberangkatan" },
+    { prop: "agentName", name: "Agen" },
     { prop: "status", name: "Status" },
     { prop: "_id", name: "Aksi" },
   ];

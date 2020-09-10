@@ -82,21 +82,25 @@ export class TransaksiCoachbusAddFormComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    console.log(this.coachBusData);
-    this.transCoachBusService.create(this.coachBusData).subscribe(
-      (resp) => {
-        console.log(resp);
-        if (resp["message"] === "Data created successfully!") {
-          this.toast.typeSuccess();
-          this.router.navigateByUrl("transaksi/bus");
-        } else {
+    if (form.controls["totalBus"].value > this.stockAvailable) {
+      this.toast.typeErrorStock();
+    } else {
+      console.log(this.coachBusData);
+      this.transCoachBusService.create(this.coachBusData).subscribe(
+        (resp) => {
+          console.log(resp);
+          if (resp["message"] === "Data created successfully!") {
+            this.toast.typeSuccess();
+            this.router.navigateByUrl("transaksi/bus");
+          } else {
+            this.toast.typeError();
+          }
+        },
+        (err) => {
+          console.log(err);
           this.toast.typeError();
         }
-      },
-      (err) => {
-        console.log(err);
-        this.toast.typeError();
-      }
-    );
+      );
+    }
   }
 }

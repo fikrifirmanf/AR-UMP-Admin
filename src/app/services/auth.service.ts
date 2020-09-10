@@ -8,12 +8,17 @@ import { env } from "../url.constants";
 import { Router } from "@angular/router";
 import { throwError } from "rxjs";
 import { User } from "user";
+import { UsersService } from "./users.service";
 
 @Injectable({
   providedIn: "root",
 })
 export class AuthService {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private userServ: UsersService,
+    private router: Router
+  ) {}
   currentUser;
   headers = new HttpHeaders().set("Content-Type", "application/json");
   private _baseUrl = env.authUrl;
@@ -23,6 +28,7 @@ export class AuthService {
     return (
       this.http.post<any>(this._baseUrl, user).subscribe((res) => {
         localStorage.setItem("access_token", res.token);
+        localStorage.setItem("user_id", res.id);
 
         this.currentUser = res;
         if (res.status == "Unauthorized") {
@@ -40,15 +46,20 @@ export class AuthService {
   getToken() {
     return localStorage.getItem("access_token");
   }
-
+  getUserId() {
+    return localStorage.getItem("user_id");
+  }
   get isLoggedIn(): boolean {
     let authToken = localStorage.getItem("access_token");
+
     return authToken !== null ? true : false;
   }
 
   doLogout() {
     let removeToken = localStorage.removeItem("access_token");
-    if (removeToken == null) {
+
+    let removeTokenUser = localStorage.removeItem("user_id");
+    if (removeToken == null && removeTokenUser == null) {
       this.router.navigateByUrl("login");
     }
   }

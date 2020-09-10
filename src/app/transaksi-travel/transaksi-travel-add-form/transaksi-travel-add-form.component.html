@@ -11,11 +11,7 @@
       <div class="card">
         <div class="card-content">
           <div class="px-3">
-            <form
-              class="form form-horizontal form-bordered"
-              (ngSubmit)="onSubmit(f)"
-              #f="ngForm"
-            >
+            <form class="form form-horizontal form-bordered" (ngSubmit)="onSubmit(f)" #f="ngForm">
               <div class="form-body">
                 <h4 class="form-section">
                   <i class="ft-info"></i> Tambah Transaksi
@@ -23,61 +19,32 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row last">
-                      <label class="col-md-3 label-control" for="travelDataId"
-                        >Jurusan</label
-                      >
+                      <label class="col-md-3 label-control" for="travelDataId">Jurusan</label>
                       <div class="col-md-9">
-                        <ng-select2
-                          class="col-md-9 border-primary"
-                          id="travelDataId"
-                          (ngModelChange)="onShowJam(f)"
-                          [options]="options"
-                          ngModel
-                          name="idTravel"
-                          [data]="destinationList"
-                          [placeholder]="'Pilih jurusan'"
-                        >
+                        <ng-select2 class="col-md-9 border-primary" id="travelDataId" (ngModelChange)="onShowJam(f)"
+                          [options]="options" ngModel name="idTravel" [data]="destinationList"
+                          [placeholder]="'Pilih jurusan'">
                         </ng-select2>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group row last">
-                      <label class="col-md-3 label-control" for="tgl-berangkat"
-                        >Tanggal Berangkat</label
-                      >
+                      <label class="col-md-3 label-control" for="tgl-berangkat">Tanggal Berangkat</label>
                       <div class="col-md-9">
-                        <input
-                          type="date"
-                          datetime="dd-mm-yyyy"
-                          required
-                          id="tgl-berangkat"
-                          class="form-control border-primary"
-                          (ngModelChange)="onShowStock(f)"
-                          ngModel
-                          name="departureDate"
-                        />
+                        <input type="date" datetime="dd-mm-yyyy" required id="tgl-berangkat"
+                          class="form-control border-primary" (ngModelChange)="onShowStock(f)" ngModel
+                          name="departureDate" />
                       </div>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group row last">
-                      <label
-                        class="col-md-3 required label-control"
-                        for="jam-berangkat"
-                        >Jam Berangkat</label
-                      >
+                      <label class="col-md-3 required label-control" for="jam-berangkat">Jam Berangkat</label>
                       <div class="col-md-9">
-                        <ng-select2
-                          class="col-md-9 border-primary"
-                          id="departureTime"
-                          (ngModelChange)="onShowStock(f)"
-                          [options]="options"
-                          ngModel
-                          name="departureTime"
-                          [data]="travelDataJamList"
-                          [placeholder]="'Pilih jam :'"
-                        >
+                        <ng-select2 class="col-md-9 border-primary" id="departureTime" (ngModelChange)="onShowStock(f)"
+                          [options]="options" ngModel name="departureTime" [data]="travelDataJamList"
+                          [placeholder]="'Pilih jam :'">
                         </ng-select2>
                       </div>
                     </div>
@@ -115,191 +82,101 @@
                           </div> -->
                     <div class="col-md-6">
                       <div class="form-group row">
-                        <label
-                          class="col-md-3 label-control"
-                          for="customer-name"
-                          >Nama Pelanggan</label
-                        >
+                        <label class="col-md-3 label-control" for="customer-name">Nama Pelanggan</label>
                         <div class="col-md-9">
-                          <input
-                            type="text"
-                            required
-                            id="customer-name"
-                            class="form-control border-primary"
-                            placeholder="Wahyudi..."
-                            ngModel
-                            name="customerName"
-                          />
+                          <input type="text" required id="customer-name" class="form-control border-primary"
+                            placeholder="Wahyudi..." ngModel name="customerName" />
                         </div>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group row">
-                        <label
-                          class="col-md-3 label-control"
-                          for="customer-email"
-                          >Email</label
-                        >
+                        <label class="col-md-3 label-control" for="customer-email">Email</label>
                         <div class="col-md-9">
-                          <input
-                            type="text"
-                            id="customer-email"
-                            class="form-control border-primary"
-                            placeholder="(Opsional)"
-                            ngModel
-                            name="customerEmail"
-                          />
+                          <input type="text" id="customer-email" class="form-control border-primary"
+                            placeholder="(Opsional)" ngModel name="customerEmail" />
                         </div>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group row">
-                        <label
-                          class="col-md-3 label-control"
-                          for="customer-telp"
-                          >No Telp</label
-                        >
+                        <label class="col-md-3 label-control" for="addrespoint">Alamat Titik Jemput</label>
                         <div class="col-md-9">
-                          <input
-                            type="text"
-                            required
-                            id="customer-telp"
-                            class="form-control border-primary"
-                            placeholder="082838xxxx"
-                            ngModel
-                            name="customerTelp"
-                          />
+                          <input type="text" id="addrespoint" class="form-control border-primary"
+                            placeholder="Wangon, RT 01/RW 02 ..." ngModel name="addressPoint" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-md-3 label-control" for="customer-telp">No Telp</label>
+                        <div class="col-md-9">
+                          <input type="text" required id="customer-telp" class="form-control border-primary"
+                            placeholder="082838xxxx" ngModel name="customerTelp" />
                         </div>
                       </div>
                     </div>
 
                     <div class="col-md-6">
                       <div class="form-group row last">
-                        <label class="col-md-3 label-control" for="from"
-                          >From</label
-                        >
+                        <label class="col-md-3 label-control" for="from">From</label>
                         <div class="col-md-9">
-                          <input
-                            type="text"
-                            required
-                            id="from"
-                            readonly
-                            class="form-control border-primary"
-                            placeholder="From..."
-                            [ngModel]="dataTravel.from"
-                            name="from"
-                          />
+                          <input type="text" required id="from" readonly class="form-control border-primary"
+                            placeholder="From..." [ngModel]="dataTravel.from" name="from" />
                         </div>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group row last">
-                        <label class="col-md-3 label-control" for="from"
-                          >To</label
-                        >
+                        <label class="col-md-3 label-control" for="from">To</label>
                         <div class="col-md-9">
-                          <input
-                            type="text"
-                            required
-                            id="to"
-                            readonly
-                            class="form-control border-primary"
-                            placeholder="to..."
-                            [ngModel]="dataTravel.destination"
-                            name="destination"
-                          />
+                          <input type="text" required id="to" readonly class="form-control border-primary"
+                            placeholder="to..." [ngModel]="dataTravel.destination" name="destination" />
                         </div>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group row last">
-                        <label class="col-md-3 label-control" for="from"
-                          >Price</label
-                        >
+                        <label class="col-md-3 label-control" for="from">Price</label>
                         <div class="col-md-9">
-                          <input
-                            type="number"
-                            required
-                            id="to"
-                            readonly
-                            class="form-control border-primary"
-                            placeholder="200000"
-                            [ngModel]="dataTravel.price"
-                            ngModel
-                            name="price"
-                          />
+                          <input type="number" required id="to" readonly class="form-control border-primary"
+                            placeholder="200000" [ngModel]="dataTravel.price" ngModel name="price" />
                         </div>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group row last">
-                        <label class="col-md-3 label-control" for="from"
-                          >Over Price</label
-                        >
+                        <label class="col-md-3 label-control" for="from">Over Price</label>
                         <div class="col-md-9">
-                          <input
-                            type="number"
-                            required
-                            id="to"
-                            class="form-control border-primary"
-                            placeholder="200000"
-                            [ngModel]="dataTravel.overPrice"
-                            name="overPrice"
-                          />
+                          <input type="number" required id="to" class="form-control border-primary" placeholder="200000"
+                            [ngModel]="dataTravel.overPrice" name="overPrice" />
                         </div>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group row last">
-                        <label class="col-md-3 label-control" for="agent-name"
-                          >Jumlah Kursi</label
-                        >
+                        <label class="col-md-3 label-control" for="agent-name">Jumlah Kursi</label>
                         <div class="col-md-9">
-                          <input
-                            type="number"
-                            required
-                            id="agent-name"
-                            class="form-control border-primary"
-                            placeholder="5"
-                            ngModel
-                            name="totalSeat"
-                          />
+                          <input type="number" required id="agent-name" class="form-control border-primary"
+                            placeholder="5" ngModel name="totalSeat" />
                         </div>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group row last">
-                        <label class="col-md-3 label-control" for="agent-name"
-                          >Agen</label
-                        >
+                        <label class="col-md-3 label-control" for="agent-name">Agen</label>
                         <div class="col-md-9">
-                          <input
-                            type="text"
-                            required
-                            id="agent-name"
-                            class="form-control border-primary"
-                            value="Admin"
-                            placeholder="Admin"
-                            ngModel
-                            name="agentName"
-                          />
+                          <input type="text" required id="agent-name" class="form-control border-primary" value="Admin"
+                            placeholder="Admin" ngModel name="agentName" />
                         </div>
                       </div>
                     </div>
 
                     <div class="col-md-6">
                       <div class="form-group row last">
-                        <label class="col-md-3 label-control" for="status"
-                          >Status</label
-                        >
+                        <label class="col-md-3 label-control" for="status">Status</label>
                         <div class="col-md-9">
-                          <select
-                            name="status"
-                            required
-                            id="status"
-                            class="form-control border-primary"
-                            ngModel
-                          >
+                          <select name="status" required id="status" class="form-control border-primary" ngModel>
                             <option value="none" selected="" disabled="">
                               Pilih status transaksi :
                             </option>
@@ -314,18 +191,11 @@
                 </ng-template>
               </div>
 
-              <div
-                *ngIf="stockAvailable == 0; else stockButton"
-                class="form-actions right"
-              >
+              <div *ngIf="stockAvailable == 0; else stockButton" class="form-actions right">
                 <button type="button" class="btn btn-raised btn-warning mr-1">
                   <i class="ft-x"></i> Batal
                 </button>
-                <button
-                  disabled
-                  type="submit"
-                  class="btn btn-raised btn-primary"
-                >
+                <button disabled type="submit" class="btn btn-raised btn-primary">
                   <i class="fa fa-check-square-o"></i> Simpan
                 </button>
               </div>

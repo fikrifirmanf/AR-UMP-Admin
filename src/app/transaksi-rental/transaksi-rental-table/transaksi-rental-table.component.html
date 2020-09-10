@@ -67,6 +67,11 @@
                         {{value}}
                     </ng-template>
                 </ngx-datatable-column>
+                <ngx-datatable-column prop="agentName" name="Agen">
+                    <ng-template let-value="value" ngx-datatable-cell-template>
+                        {{value}}
+                    </ng-template>
+                </ngx-datatable-column>
                 <ngx-datatable-column [width]="100" prop="status" name="Status">
                     <ng-template let-value="value" ngx-datatable-cell-template>
 
