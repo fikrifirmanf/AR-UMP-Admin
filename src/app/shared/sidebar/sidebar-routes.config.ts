@@ -61,9 +61,20 @@ export const ROUTES: RouteInfo[] = [
         isExternalLink: false,
         submenu: [],
       },
+      
       {
         path: "/users/bus",
         title: "Agen Coach Bus",
+        icon: "",
+        class: "",
+        badge: "",
+        badgeClass: "",
+        isExternalLink: false,
+        submenu: [],
+      },
+      {
+        path: "/travel/biro",
+        title: "Biro Travel",
         icon: "",
         class: "",
         badge: "",
