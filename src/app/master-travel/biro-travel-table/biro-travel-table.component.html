@@ -4,14 +4,15 @@
     <div class="row text-left">
         <div class="col-12">
             <div class="content-header">{{title}}</div>
+            <button routerLink="/travel/biro/add" class="btn btn-primary btn-fab mt-2"><i class="ft ft-plus"></i> Tambah</button>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-12">
             <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='Cari...'
                 (keyup)='updateFilter($event)' />
-            <ngx-datatable #table class='bootstrap' [columns]="columns" [headerHeight]="50" [footerHeight]="50"
-                [rowHeight]="'auto'" [limit]="10" [rows]='rows'>
+                <ngx-datatable #table class='bootstrap' [scrollbarH]="true" [columnMode]="'force'" [columns]="columns"
+                [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10" [rows]='rows'>
 
                 <ngx-datatable-column prop="namaBiro" name="Nama">
                     <ng-template let-value="value" ngx-datatable-cell-template>
