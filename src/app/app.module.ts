@@ -33,6 +33,8 @@ import { AuthInterceptor } from "./shared/auth/auth.config.interceptor";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule, Title } from "@angular/platform-browser";
 import { PathLocationStrategy, LocationStrategy } from "@angular/common";
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -72,6 +74,7 @@ export function createTranslateLoader(http: HttpClient) {
       apiKey: "YOUR KEY",
     }),
     PerfectScrollbarModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [
     { provide: LocationStrategy, 
