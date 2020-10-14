@@ -15,6 +15,7 @@ export class PrintReportComponent implements OnInit {
   titleLaporan;
   transaksiTitle;
   totalPrice;
+  logoApp;
   dateNow = formatDate(new Date(), "dd-MM-yyyy", "en");
 
   loading = true;
@@ -26,6 +27,7 @@ export class PrintReportComponent implements OnInit {
     var pilih = form.controls["transaksi"].value;
     console.log(form.value);
     if (pilih === "travel") {
+      this.logoApp = "logo-trevel.png";
       this.transaksiTitle = "travel";
       this.titleLaporan = "Laporan Transaksi Travel";
       this.listTrans = this.reportService.getReportTravel(form.value).subscribe(
@@ -47,6 +49,7 @@ export class PrintReportComponent implements OnInit {
         }
       );
     } else if (pilih === "rental") {
+      this.logoApp = "logo-rental.png";
       this.transaksiTitle = "rental";
       this.titleLaporan = "Laporan Transaksi Rental";
       this.listTrans = this.reportService.getReportRental(form.value).subscribe(
@@ -68,6 +71,7 @@ export class PrintReportComponent implements OnInit {
         }
       );
     } else {
+      this.logoApp = "logo-bus.png";
       this.transaksiTitle = "coachbus";
       this.titleLaporan = "Laporan Transaksi Coach Bus";
       this.listTrans = this.reportService

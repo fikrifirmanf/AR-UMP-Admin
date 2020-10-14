@@ -25,22 +25,7 @@ export class AuthService {
 
   // Sign-in
   signIn(user: User) {
-    return (
-      this.http.post<any>(this._baseUrl, user).subscribe((res) => {
-        localStorage.setItem("access_token", res.token);
-        localStorage.setItem("user_id", res.id);
-
-        this.currentUser = res;
-        if (res.status == "Unauthorized") {
-          console.log(res.message);
-        }
-        console.log(res);
-        this.router.navigateByUrl("dashboard");
-      }),
-      (err) => {
-        console.log(err);
-      }
-    );
+    return this.http.post<any>(this._baseUrl, user);
   }
 
   getToken() {
