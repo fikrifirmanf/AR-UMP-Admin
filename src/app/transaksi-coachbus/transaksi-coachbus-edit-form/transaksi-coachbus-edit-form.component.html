@@ -39,11 +39,12 @@
                                             <div class="col-md-9">
                                                 <input type="text" readonly required id="tgl-berangkat"
                                                     class="form-control border-primary" ngModel
-                                                    [(ngModel)]="transDataList.dateStart[0]" name="dateStart" />
+                                                    [(ngModel)]="transDataList.dateStart" name="dateStart" />
 
 
                                             </div>
                                         </div>
+                                        
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row last">
@@ -53,6 +54,17 @@
                                                 <input type="time" required id="jam-berangkat"
                                                     class="form-control border-primary"
                                                     [(ngModel)]="transDataList.departureTime" name="departureTime" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="tgl-berangkat">Tanggal
+                                                Selesai</label>
+                                            <div class="col-md-9">
+                                                <input type="text" readonly  required id="tgl-berangkat"
+                                                    class="form-control border-primary" ngModel
+                                                    [(ngModel)]="transDataList.dateFinish" name="dateFinish" />
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -86,13 +98,13 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label class="col-md-3 label-control" for="customer-email">Titik
-                                                Akses</label>
+                                            <label class="col-md-3 label-control" for="customer-email">Plat Nomor
+                                                </label>
                                             <div class="col-md-9">
                                                 <input type="text" id="customer-email"
                                                     class="form-control border-primary"
-                                                    placeholder="Wangon, RT 03,RW 02, ...."
-                                                    [(ngModel)]="transDataList.addressPoint" name="addressPoint" />
+                                                    placeholder="R1BA,R32AB,R44CA"
+                                                    [(ngModel)]="transDataList.platNo" name="platNo" />
                                             </div>
                                         </div>
                                     </div>
@@ -123,7 +135,7 @@
                                         <div class="form-group row last">
                                             <label class="col-md-3 label-control" for="from">Harga Total</label>
                                             <div class="col-md-9">
-                                                <input type="number" required readonly id="to"
+                                                <input type="number" required id="to"
                                                     class="form-control border-primary" placeholder="200000"
                                                     [ngModel]="transDataList.price" name="price" />
                                             </div>

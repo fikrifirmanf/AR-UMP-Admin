@@ -31,11 +31,15 @@ export class TransaksiRentalEditFormComponent implements OnInit {
       platNo: "",
       price: 0,
     },
-
+    biroData : {
+      biroId: "",
+      biroName: ""
+    },
     duration: 0,
     hours: "",
     agentName: "",
     dateStart: "",
+    dateFinish: "",
     timeStart: "",
     status: "",
   };

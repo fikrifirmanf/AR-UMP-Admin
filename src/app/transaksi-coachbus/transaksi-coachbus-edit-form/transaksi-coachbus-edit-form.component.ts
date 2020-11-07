@@ -26,7 +26,9 @@ export class TransaksiCoachbusEditFormComponent implements OnInit {
     agentName: "",
     price: 0,
     addressPoint: "",
-    dateStart: [],
+    platNo: "",
+    dateStart: "",
+    dateFinish: "",
     departureTime: "",
     duration: 0,
     totalBus: 0,
@@ -48,9 +50,13 @@ export class TransaksiCoachbusEditFormComponent implements OnInit {
     );
   }
   onSubmit(form: NgForm) {
+     console.log(form.value);
     this.transCoachBusServ.update(this.id, form.value).subscribe(
+      
       (resp) => {
         if (resp["message"] === "Updated successfully!") {
+          console.log(resp)
+          
           this.toast.typeSuccess();
           this.router.navigateByUrl("transaksi/bus");
         } else {

@@ -89,7 +89,7 @@
                                         <div class="form-group row last">
                                             <label class="col-md-3 label-control" for="jml-hari">Jumlah Hari</label>
                                             <div class="col-md-9">
-                                                <input type="number" required id="jml-hari"
+                                                <input type="number" readonly required id="jml-hari"
                                                     class="form-control border-primary" [ngModel]='rentalData.duration'
                                                     name="duration" />
                                             </div>
@@ -122,12 +122,34 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="agent-name">Biro</label>
+                                            <div class="col-md-9">
+                                                <input type="text" required id="agent-name" readonly
+                                                    class="form-control border-primary" value="Admin"
+                                                    placeholder="biro" [ngModel]='rentalData.biroData.biroName'
+                                                    name="biroName" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row last">
                                             <label class="col-md-3 label-control" for="tgl-berangkat">Tanggal
                                                 Berangkat</label>
                                             <div class="col-md-9">
-                                                <input type="date" required id="tgl-berangkat"
+                                                <input type="date" readonly required id="tgl-berangkat"
                                                     class="form-control border-primary" [ngModel]='rentalData.dateStart'
                                                     name="dateStart" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="tgl-berangkat">Tanggal
+                                                Selesai</label>
+                                            <div class="col-md-9">
+                                                <input type="date" readonly required id="tgl-berangkat"
+                                                    class="form-control border-primary" [ngModel]='rentalData.dateFinish'
+                                                    name="dateFinish" />
                                             </div>
                                         </div>
                                     </div>

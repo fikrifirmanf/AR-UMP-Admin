@@ -10,9 +10,10 @@ import { TravelEditFormComponent } from './travel-edit-form/travel-edit-form.com
 import { BiroTravelTableComponent } from './biro-travel-table/biro-travel-table.component';
 import { BiroTravelAddFormComponent } from './biro-travel-add-form/biro-travel-add-form.component';
 import { NgSelect2Module } from 'ng-select2';
+import { BiroTravelEditFormComponent } from './biro-travel-edit-form/biro-travel-edit-form.component';
 
 @NgModule({
-  declarations: [TravelTableComponent, TravelAddFormComponent, TravelEditFormComponent, BiroTravelTableComponent, BiroTravelAddFormComponent],
+  declarations: [TravelTableComponent, TravelAddFormComponent, TravelEditFormComponent, BiroTravelTableComponent, BiroTravelAddFormComponent, BiroTravelEditFormComponent],
   imports: [
     NgSelect2Module,
     CommonModule,

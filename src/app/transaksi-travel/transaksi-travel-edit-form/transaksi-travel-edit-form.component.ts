@@ -29,6 +29,11 @@ export class TransaksiTravelEditFormComponent implements OnInit {
       destination: "",
       price: 0,
     },
+    biroData : {
+      biroId: "",
+      biroName: ""
+    },
+    addressPoint: "",
     overPrice: 0,
     departureDate: "",
     departureTime: "",

@@ -86,15 +86,13 @@
                               </div>
                             </div> -->
 
-                                    <input type="text" hidden required id="customer-name"
-                                        class="form-control border-primary" placeholder="Wahyudi..."
-                                        [ngModel]="travelList.departureDate" name="departureDate" />
-                                    <input type="text" required hidden id="customer-name"
-                                        class="form-control border-primary" placeholder="Wahyudi..."
-                                        [ngModel]="travelList.departureTime" name="departureTime" />
+                                    
                                     <input type="text" hidden required id="customer-name"
                                         class="form-control border-primary" placeholder="Wahyudi..."
                                         [ngModel]="travelList.travelData._id" name="idTravel" />
+                                    <input type="text" hidden required id="customer-name"
+                                        class="form-control border-primary" placeholder="Wahyudi..."
+                                        [ngModel]="travelList.biroData.biroId" name="biroId" />
                                     <div class="col-md-6">
                                         <div class="form-group row">
                                             <label class="col-md-3 label-control" for="customer-name">Nama
@@ -132,7 +130,7 @@
                                         <div class="form-group row last">
                                             <label class="col-md-3 label-control" for="from">From</label>
                                             <div class="col-md-9">
-                                                <input type="text" required id="from"
+                                                <input type="text" readonly required id="from"
                                                     class="form-control border-primary" placeholder="From..."
                                                     [ngModel]="travelList.travelData.from" name="from" />
                                             </div>
@@ -142,9 +140,40 @@
                                         <div class="form-group row last">
                                             <label class="col-md-3 label-control" for="from">To</label>
                                             <div class="col-md-9">
-                                                <input type="text" required id="to" class="form-control border-primary"
+                                                <input type="text" required readonly id="to" class="form-control border-primary"
                                                     placeholder="to..." [ngModel]="travelList.travelData.destination"
                                                     name="destination" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="from">Tanggal Berangkat</label>
+                                            <div class="col-md-9">
+                                                
+                                    <input type="text" readonly required id="customer-name"
+                                    class="form-control border-primary" placeholder="Wahyudi..."
+                                    [ngModel]="travelList.departureDate" name="departureDate" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="from">Waktu Berangkat</label>
+                                            <div class="col-md-9">
+                                                <input type="text" readonly id="customer-name"
+                                                class="form-control border-primary" placeholder="Wahyudi..."
+                                                [ngModel]="travelList.departureTime" name="departureTime" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="from">Titik Jemput</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="customer-name"
+                                                class="form-control border-primary" placeholder="alamat..."
+                                                [ngModel]="travelList.addressPoint" name="addressPoint" />
                                             </div>
                                         </div>
                                     </div>
@@ -182,9 +211,20 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="agent-name">Biro</label>
+                                            <div class="col-md-9">
+                                                <input type="text" required id="agent-name" readonly
+                                                    class="form-control border-primary" value="Admin"
+                                                    placeholder="biro" [ngModel]='travelList.biroData.biroName'
+                                                    name="biroName" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row last">
                                             <label class="col-md-3 label-control" for="agent-name">Agen</label>
                                             <div class="col-md-9">
-                                                <input type="text" required id="agent-name"
+                                                <input type="text" readonly required id="agent-name"
                                                     class="form-control border-primary" value="Admin"
                                                     placeholder="Admin" [ngModel]="travelList.agentName"
                                                     name="agentName" />

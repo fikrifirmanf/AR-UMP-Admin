@@ -25,7 +25,7 @@
                                                     name="titleApp">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <!-- <div class="form-group row">
                                             <label class="col-md-3 label-control">Logo Website: </label>
                                             <div class="col-md-9">
                                                 <label id="projectinput8" class="file  mx-auto">
@@ -34,7 +34,7 @@
                                                     <span class="file-custom"></span>
                                                     : </label>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="form-group row">
                                             <label class="col-md-3 label-control" for="projectinput5">WhatsApp Utama:
                                             </label>
@@ -71,8 +71,37 @@
                                                     [ngModel]="serviceBody.whatsappNumTravel" name="whatsappNumTravel">
                                             </div>
                                         </div>
-
-
+                                        <br>
+                                        <label class="col-md-4">Settings Diskon
+                                        </label>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" placeholder="10000"
+                                                for="projectinput5">Diskon Rental (Rp.):
+                                            </label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="projectinput8" class="form-control"
+                                                    [ngModel]="serviceBody.diskonRental" name="diskonRental">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" placeholder="10000"
+                                                for="projectinput5">Diskon Travel (Rp.):
+                                            </label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="projectinput8" class="form-control"
+                                                    [ngModel]="serviceBody.diskonTravel" name="diskonTravel">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" placeholder="10000"
+                                                for="projectinput5">Diskon CoachBus (Rp.):
+                                            </label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="projectinput8" class="form-control"
+                                                    [ngModel]="serviceBody.diskonCoachBus" name="diskonCoachBus">
+                                            </div>
+                                        </div>
 
 
                                     </div>

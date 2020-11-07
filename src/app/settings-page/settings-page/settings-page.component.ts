@@ -19,6 +19,9 @@ export class SettingsPageComponent implements OnInit {
     whatsappNumRental: "",
     whatsappNumTravel: "",
     whatsappNumCoachBus: "",
+    diskonRental: 0,
+  diskonTravel: 0,
+  diskonCoachBus: 0,
   };
   constructor(
     private toast: FormToastrService,
