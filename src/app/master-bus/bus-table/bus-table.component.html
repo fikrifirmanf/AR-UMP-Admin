@@ -4,8 +4,8 @@
     <div class="row text-left">
         <div class="col-12">
             <div class="content-header">{{title}}</div>
-            <!-- <button routerLink="/rental/add" class="btn btn-primary btn-fab mt-2"><i class="ft ft-plus"></i>
-                Tambah</button> -->
+            <button routerLink="add" class="btn btn-primary btn-fab mt-2"><i class="ft ft-plus"></i>
+                Tambah</button>
         </div>
     </div>
 
@@ -40,9 +40,9 @@
                         <a [routerLink]="['edit',value]"><button class="btn btn-warning btn-fab mr-2">
                                 <i class="ft ft-edit"></i>
                             </button></a>
-                        <!-- <button class="btn btn-danger btn-fab" (click)="onDelete(value)">
+                        <button class="btn btn-danger btn-fab" (click)="onDelete(value)">
                             <i class="ft ft-trash"></i>
-                        </button> -->
+                        </button>
                     </ng-template>
                 </ngx-datatable-column>
 

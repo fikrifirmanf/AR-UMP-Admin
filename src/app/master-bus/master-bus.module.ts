@@ -6,9 +6,10 @@ import { BusTableComponent } from "./bus-table/bus-table.component";
 import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 import { BusEditFormComponent } from "./bus-edit-form/bus-edit-form.component";
 import { FormsModule } from "@angular/forms";
+import { BusAddFormComponent } from './bus-add-form/bus-add-form.component';
 
 @NgModule({
-  declarations: [BusTableComponent, BusEditFormComponent],
+  declarations: [BusTableComponent, BusEditFormComponent, BusAddFormComponent],
   imports: [
     CommonModule,
     MasterBusRoutingModule,

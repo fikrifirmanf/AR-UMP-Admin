@@ -24,6 +24,7 @@ export class BiroTravelAddFormComponent implements OnInit {
   public options: Options;
   dataAgentName = ""
   public travelAgentList : Array<Select2OptionData>;
+  
   title = "Tambah Biro Travel";
   onSubmit(form: NgForm) {
     this.biroServ.create(form.value).subscribe(
