@@ -1,5 +1,5 @@
 export const env = {
-  production: false,
-  apiUrl: "https://api8888.siao.my.id/api/",
-  authUrl: "https://api8888.siao.my.id/auth",
+  production: true,
+  apiUrl: "https://api.the8888family.id/api/",
+  authUrl: "https://api.the8888family.id/auth",
 };
