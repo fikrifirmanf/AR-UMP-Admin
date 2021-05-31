@@ -35,6 +35,7 @@ import { BrowserModule, Title } from "@angular/platform-browser";
 import { PathLocationStrategy, LocationStrategy } from "@angular/common";
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { MasterBuildingModule } from './master-building/master-building.module';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -51,6 +52,7 @@ export function createTranslateLoader(http: HttpClient) {
     FullLayoutComponent,
     ContentLayoutComponent,
     LoginPageComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -71,10 +73,11 @@ export function createTranslateLoader(http: HttpClient) {
       },
     }),
     AgmCoreModule.forRoot({
-      apiKey: "YOUR KEY",
+      apiKey: "AIzaSyABWNsLkM5_UxNcRBB4lyiH0_tLWEb9pPY",
     }),
     PerfectScrollbarModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    MasterBuildingModule,
   ],
   providers: [
     { provide: LocationStrategy, 

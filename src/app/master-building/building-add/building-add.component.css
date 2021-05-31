@@ -1,0 +1,13 @@
+#my-node {
+    /* border: 2px solid rgba(28,110,164,0.53);
+    border-radius: 28px; */
+    background-color: transparent;
+        width: 40%;
+        float: left;
+        margin: auto;
+    
+    }
+agm-map {
+        height: 100px;
+        
+      }

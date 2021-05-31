@@ -1,12 +1,11 @@
 import { Component, OnInit, AfterViewInit } from "@angular/core";
 import * as Chartist from "chartist";
 import { ChartType, ChartEvent } from "ng-chartist";
-import { TransaksiRentalService } from "app/services/transaksi-rental.service";
 import { DatePipe } from "@angular/common";
-import { SettingsAppService } from "app/services/settings-app.service";
 import { Title } from "@angular/platform-browser";
 import { AuthService } from "app/services/auth.service";
 import { UsersService } from "app/services/users.service";
+import { FormToastrService } from "app/services/toastr.service";
 
 declare var require: any;
 
@@ -24,29 +23,30 @@ export interface Chart {
   selector: "app-dashboard1",
   templateUrl: "./dashboard1.component.html",
   styleUrls: ["./dashboard1.component.scss"],
-  providers: [DatePipe],
+  providers: [DatePipe, FormToastrService],
 })
 export class Dashboard1Component implements OnInit, AfterViewInit {
   constructor(
     private titleServ: Title,
-    public transRentalServ: TransaksiRentalService,
-    private settingServ: SettingsAppService,
-    private statistikServ: SettingsAppService,
+    public toast:FormToastrService,
     private authServ: AuthService,
     private userServ: UsersService
   ) {}
   tgl;
-
+  lat: number = -7.412207679837826;
+  lng: number = 109.27170037031276;
   // Line area chart configuration Starts
   ngOnInit() {
     this.checkUser();
   }
   ngAfterViewInit() {
-    this.getSettings();
 
-    this.showStatistik();
-    this.getTransRental();
+    // this.showStatistik();
+  
   }
+  clickedMarker(lat: number, lng: number) {
+    this.toast.typeSuccess()
+    }
 
   checkUser() {
     this.userServ.getById(localStorage.getItem("user_id")).subscribe((resp) => {
@@ -57,11 +57,6 @@ export class Dashboard1Component implements OnInit, AfterViewInit {
     });
   }
 
-  getSettings() {
-    this.settingServ.getById().subscribe((resp) => {
-      this.titleServ.setTitle(resp["data"]["titleApp"] + " - Dashboard");
-    });
-  }
   statistikList = {
     totalUser: 0,
     rental: 0,
@@ -74,135 +69,25 @@ export class Dashboard1Component implements OnInit, AfterViewInit {
     series: [[], []],
   };
 
-  showStatistik() {
-    this.statistikServ.getAll().subscribe(
-      (resp) => {
-        this.statistikList.totalUser = resp["data"]["totalUser"];
-        this.statistikList.rental =
-          resp["data"].totalTransaksiRental[0].totalTransaksi;
-        this.statistikList.travel =
-          resp["data"].totalTransaksiTravel[0].totalTransaksi;
-        this.statistikList.coachbus =
-          resp["data"].totalTransaksiCoachBus[0].totalTransaksi;
-        // console.log(resp["data"]);
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-  }
+  // showStatistik() {
+  //   this.statistikServ.getAll().subscribe(
+  //     (resp) => {
+  //       this.statistikList.totalUser = resp["data"]["totalUser"];
+  //       this.statistikList.rental =
+  //         resp["data"].totalTransaksiRental[0].totalTransaksi;
+  //       this.statistikList.travel =
+  //         resp["data"].totalTransaksiTravel[0].totalTransaksi;
+  //       this.statistikList.coachbus =
+  //         resp["data"].totalTransaksiCoachBus[0].totalTransaksi;
+  //       // console.log(resp["data"]);
+  //     },
+  //     (err) => {
+  //       console.log(err);
+  //     }
+  //   );
+  // }
 
-  getTransRental() {
-    this.transRentalServ.getAll().subscribe(
-      (resp) => {
-        var arr = [];
-        this.tgl = resp["data"][1]["createdAt"];
-        // console.log(
-        //   formatDate(
-        //     this.tgl.substr(0, this.tgl.lastIndexOf(" ") + 1),
-        //     "yyyy-mm-dd",
-        //     "en-US"
-        //   )
-        // );
-
-        // console.log(this.tgl.substr(0, this.tgl.lastIndexOf(" ") + 1));
-        // console.log(resp["data"]);
-        for (let i = 0; i < resp["data"].length; i++) {
-          var lbl = resp["data"][i]["createdAt"].substr(
-            0,
-            this.tgl.lastIndexOf(" ") + 1
-          );
-          var price = resp["data"][i]["carData"]["price"];
-
-          arr.push({ labels: lbl, series: price });
-        }
-        // this.transRentalList = arr;
-        var result = [];
-        arr.forEach(function (a) {
-          if (!this[a.labels]) {
-            this[a.labels] = { labels: a.labels, series: 0 };
-            result.push(this[a.labels]);
-          }
-          this[a.labels].series += a.series;
-        }, Object.create(null));
-        this.transRentalList = result;
-        console.log(this.transRentalList);
-        var labelList = [];
-        var seriesList = [];
-        var seriesList2 = [];
-        for (let j = 0; j < this.transRentalList.length; j++) {
-          var element = this.transRentalList[j]["labels"];
-          var ser = this.transRentalList[j]["series"];
-          labelList.push(element);
-          seriesList.push(ser);
-        }
-        this.chartDataRental.labels = labelList;
-        this.chartDataRental.series[0] = seriesList;
-        this.chartDataRental.series[1] = seriesList;
-        console.log(this.chartDataRental);
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-  }
-  lineArea: Chart = {
-    type: "Line",
-    data: data["lineAreaDashboard"],
-    options: {
-      low: 0,
-      showArea: true,
-      fullWidth: true,
-      onlyInteger: true,
-      axisY: {
-        low: 0,
-        scaleMinSpace: 50,
-      },
-      axisX: {
-        showGrid: false,
-      },
-    },
-    events: {
-      created(data: any): void {
-        var defs = data.svg.elem("defs");
-        defs
-          .elem("linearGradient", {
-            id: "gradient",
-            x1: 0,
-            y1: 1,
-            x2: 1,
-            y2: 0,
-          })
-          .elem("stop", {
-            offset: 0,
-            "stop-color": "rgba(0, 201, 255, 1)",
-          })
-          .parent()
-          .elem("stop", {
-            offset: 1,
-            "stop-color": "rgba(146, 254, 157, 1)",
-          });
-
-        defs
-          .elem("linearGradient", {
-            id: "gradient1",
-            x1: 0,
-            y1: 1,
-            x2: 1,
-            y2: 0,
-          })
-          .elem("stop", {
-            offset: 0,
-            "stop-color": "rgba(132, 60, 247, 1)",
-          })
-          .parent()
-          .elem("stop", {
-            offset: 1,
-            "stop-color": "rgba(56, 184, 242, 1)",
-          });
-      },
-    },
-  };
+  
   // Line area chart configuration Ends
 
   // Stacked Bar chart configuration Starts

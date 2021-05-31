@@ -15,13 +15,7 @@ export const Full_ROUTES: Routes = [
         (m) => m.UsersModule
       ),
   },
-  {
-    path: "rental",
-    loadChildren: () =>
-      import("../../master-rental/rental-table.module").then(
-        (m) => m.RentalModule
-      ),
-  },
+ 
   {
     path: "travel",
     loadChildren: () =>
@@ -30,47 +24,13 @@ export const Full_ROUTES: Routes = [
       ),
   },
   {
-    path: "bus",
+    path: "building",
     loadChildren: () =>
-      import("../../master-bus/master-bus.module").then(
-        (m) => m.MasterBusModule
+      import("../../master-building/master-building.module").then(
+        (m) => m.MasterBuildingModule
       ),
   },
-  {
-    path: "transaksi/rental",
-    loadChildren: () =>
-      import("../../transaksi-rental/transaksi-rental.module").then(
-        (m) => m.TransaksiRentalModule
-      ),
-  },
-  {
-    path: "transaksi/travel",
-    loadChildren: () =>
-      import("../../transaksi-travel/transaksi-travel.module").then(
-        (m) => m.TransaksiTravelModule
-      ),
-  },
-  {
-    path: "transaksi/bus",
-    loadChildren: () =>
-      import("../../transaksi-coachbus/transaksi-coachbus.module").then(
-        (m) => m.TransaksiCoachbusModule
-      ),
-  },
-  {
-    path: "report",
-    loadChildren: () =>
-      import("../../print-report/print-report/print-report.module").then(
-        (m) => m.PrintReportModule
-      ),
-  },
-  {
-    path: "settings",
-    loadChildren: () =>
-      import("../../settings-page/settings-page.module").then(
-        (m) => m.SettingsPageModule
-      ),
-  },
+  
   // {
   //   path: "calendar",
   //   loadChildren: () =>

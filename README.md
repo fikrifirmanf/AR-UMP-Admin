@@ -1,4 +1,4 @@
-# The 8888 Family Dashboard
+# AR UMP Admin
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.2.
 

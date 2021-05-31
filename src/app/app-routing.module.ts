@@ -34,20 +34,15 @@ const appRoutes: Routes = [
     children: CONTENT_ROUTES,
     canActivate: [AuthGuard],
   },
-  {
-    path: "transaksi-travel",
-    loadChildren: () =>
-      import("./transaksi-travel/transaksi-travel.module").then(
-        (m) => m.TransaksiTravelModule
-      ),
-  },
-  {
-    path: "transaksi-coachbus",
-    loadChildren: () =>
-      import("./transaksi-coachbus/transaksi-coachbus.module").then(
-        (m) => m.TransaksiCoachbusModule
-      ),
-  },
+  { path: 'master-building', loadChildren: () => import('./master-building/master-building.module').then(m => m.MasterBuildingModule) },
+  // {
+  //   path: "transaksi-travel",
+  //   loadChildren: () =>
+  //     import("./transaksi-travel/transaksi-travel.module").then(
+  //       (m) => m.TransaksiTravelModule
+  //     ),
+  // },
+ 
   {
     path: "**",
     redirectTo: "pages/error",

@@ -26,7 +26,7 @@ export class FormToastrService {
   // Success Type
   typeWarning() {
     this.toastr.warning(
-      "My name is Inigo Montoya. You killed my father, prepare to die!"
+      "Belum di konversi ke Image, silahkan klik Get Image !"
     );
   }
 

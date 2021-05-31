@@ -1,0 +1,87 @@
+<!-- Filter Datatable Options Starts -->
+<section id="filter" class="mb-3">
+    <!-- <button (click)="testUsers()">Klik</button> -->
+    <div class="row text-left">
+        <div class="col-12">
+            <div class="content-header">{{title}}</div>
+            <div class="row">
+            <div class="col-5">
+            <div class="card gradient-ibiza-sunset">
+                <div class="card-content">
+                    <div class="card-body pt-2 pb-2">
+                        <div class="media">
+                            <div class="media-body white text-left">
+                                <h3 class="font-large-1 mb-0">
+                                    {{totalBuilding}}
+                                </h3>
+                                <span>Total Gedung</span>
+                            </div>
+                            <div class="media-right white text-right">
+                                <i class="fa fa-building font-large-1"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div id="Widget-line-chart" class="height-75 WidgetlineChart WidgetlineChartshadow mb-2">
+                        
+                    </div> -->
+    
+                </div>
+            </div>
+        </div>
+    </div>
+            <button routerLink="/building/add" class="btn btn-primary btn-fab mt-2"><i class="ft ft-plus"></i>
+                Tambah</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <input type='text' style='padding:8px;margin:15px auto;width:40%;'
+                placeholder='Cari berdasarkan nama gedung...' (keyup)='updateFilter($event)' />
+            <ngx-datatable #table class='bootstrap' [scrollbarH]="true" [columnMode]="'force'" [columns]="columns"
+                [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10" [rows]='rows'>
+
+                <ngx-datatable-column prop="uniqueName" name="Gedung ID">
+                    <ng-template let-value="value" ngx-datatable-cell-template>
+                        {{ value }}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column prop="name" name="Nama Gedung">
+                    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                        {{ value }}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column prop="lat" name="Latitude">
+                    <ng-template let-value="value" ngx-datatable-cell-template>
+                        {{ value }}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column prop="long" name="Longitude">
+                    <ng-template let-value="value" ngx-datatable-cell-template>
+                        {{ value }}
+                    </ng-template>
+                </ngx-datatable-column>
+                
+
+                <ngx-datatable-column name="Aksi" sortable="false" prop="_id">
+                    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                        {{column.name}}
+                    </ng-template>
+                    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                        <a [routerLink]="['edit',value]"><button class="btn btn-primary btn-fab mr-2">
+                            <i class="ft ft-eye"></i>
+                        </button></a>
+                        <a [routerLink]="['edit',value]"><button class="btn btn-warning btn-fab mr-2">
+                                <i class="ft ft-edit"></i>
+                            </button></a>
+                        <button class="btn btn-danger btn-fab" (click)="onDelete(value)">
+                            <i class="ft ft-trash"></i>
+                        </button>
+                    </ng-template>
+                </ngx-datatable-column>
+
+            </ngx-datatable>
+        </div>
+    </div>
+</section>
+<!-- Filter Datatable Options Ends -->
