@@ -24,7 +24,7 @@ export class LoginPageComponent implements OnInit {
   ngOnInit() {
     localStorage.removeItem("user_id");
     localStorage.removeItem("user_type");
-    this.titleServ.setTitle("The 8888 Family - Login");
+    this.titleServ.setTitle("AR UMP ADMIN - Login");
   }
 
   loginUser(form: NgForm) {

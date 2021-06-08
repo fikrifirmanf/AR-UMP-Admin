@@ -100,8 +100,8 @@ export class BuildingAddComponent implements OnInit {
     this.dataList.imgurl = document.getElementById('imge').textContent
     this.dataList.name = form.controls["name"].value
     this.dataList.desc = form.controls["desc"].value
-    this.dataList.lat = this.lat
-    this.dataList.long = this.lng
+    this.dataList.lat = form.controls['lat'].value != "" ?form.controls['lat'].value:this.lat
+    this.dataList.long = form.controls['long'].value != "" ?form.controls['long'].value:this.lat
     this.dataList.typeBuilding = form.controls["typeBuilding"].value
     this.dataList.uniqueName = form.controls["uniqueName"].value
     

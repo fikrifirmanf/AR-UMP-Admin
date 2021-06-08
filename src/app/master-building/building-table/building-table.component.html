@@ -68,10 +68,10 @@
                         {{column.name}}
                     </ng-template>
                     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                        <a [routerLink]="['edit',value]"><button class="btn btn-primary btn-fab mr-2">
+                        <a [routerLink]="['detail',value]"><button class="btn btn-primary btn-fab mr-2">
                             <i class="ft ft-eye"></i>
                         </button></a>
-                        <a [routerLink]="['edit',value]"><button class="btn btn-warning btn-fab mr-2">
+                        <a [routerLink]="['/building/edit',value]"><button class="btn btn-warning btn-fab mr-2">
                                 <i class="ft ft-edit"></i>
                             </button></a>
                         <button class="btn btn-danger btn-fab" (click)="onDelete(value)">

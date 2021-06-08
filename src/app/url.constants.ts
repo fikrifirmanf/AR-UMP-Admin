@@ -1,5 +1,5 @@
 export const env = {
   production: true,
-  apiUrl: "http://localhost:3000/api/v1/",
-  authUrl: "http://localhost:3000/auth",
+  apiUrl: "https://apiarump.fikriff.xyz/api/v1/",
+  authUrl: "https://apiarump.fikriff.xyz/auth",
 };

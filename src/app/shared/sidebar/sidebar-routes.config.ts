@@ -84,8 +84,29 @@ export const ROUTES: RouteInfo[] = [
       submenu: [],
     }
   ],
-  },
   
+  },
+  {
+    path: "",
+    title: "Statistics",
+    icon: "fa fa-bar-chart",
+    class: "has-sub",
+    badge: "",
+    badgeClass: "",
+    isExternalLink: false,
+    submenu: [{
+      path: "/statistics/visitor",
+      title: "Visitor",
+      icon: "",
+      class: "",
+      badge: "",
+      badgeClass: "",
+      isExternalLink: false,
+      submenu: [],
+    },
+    
+    
+  ],}
   // { path: '/colorpalettes', title: 'Color Palette', icon: 'ft-droplet', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
   // { path: '/inbox', title: 'Inbox', icon: 'ft-mail', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
   // { path: '/chat', title: 'Chat', icon: 'ft-message-square', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },

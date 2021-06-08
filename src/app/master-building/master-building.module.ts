@@ -8,9 +8,10 @@ import { NgSelect2Module } from 'ng-select2';
 import { BuildingAddComponent } from './building-add/building-add.component';
 import { FormsModule } from "@angular/forms";
 import { AgmCoreModule } from '@agm/core';
+import { BuildingEditComponent } from './building-edit/building-edit.component';
 
 @NgModule({
-  declarations: [    BuildingTableComponent, BuildingAddComponent,
+  declarations: [    BuildingTableComponent, BuildingAddComponent, BuildingEditComponent,
 ],
   imports: [
     AgmCoreModule,

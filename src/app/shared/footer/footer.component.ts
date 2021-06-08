@@ -9,4 +9,5 @@ import { Component, HostBinding } from '@angular/core';
 export class FooterComponent{
     //Variables
     currentDate : Date = new Date();
+    domain = window.location.hostname
 }

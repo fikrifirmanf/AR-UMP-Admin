@@ -30,6 +30,13 @@ export const Full_ROUTES: Routes = [
         (m) => m.MasterBuildingModule
       ),
   },
+  {
+    path: "statistics",
+    loadChildren: () =>
+      import("../../master-statistics/master-statistics.module").then(
+        (m) => m.MasterStatisticsModule
+      ),
+  },
   
   // {
   //   path: "calendar",
