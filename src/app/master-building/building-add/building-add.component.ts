@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
 import { BuildingService } from 'app/services/building.service';
 import { FormToastrService } from 'app/services/toastr.service';
 import * as htmlToImage from 'html-to-image';
-import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
-import { Subject, Subscription } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-building-add',
@@ -108,14 +104,14 @@ export class BuildingAddComponent implements OnInit {
     console.log("rrq "+ this.dataList.imgurl)
     console.log(this.lat)
     console.log(form.controls["name"].value)
+    if(this.dataList.imgurl != ""){
+      
     
     this.buildingServ.create(this.dataList).subscribe(
 
       (res) => {
         console.log(this.dataList)
-        if(this.dataList.imgurl == ""){
-          this.toast.typeWarning()
-        }
+       
         if (res["message"] === "Created successfully") {
           this.toast.typeSuccess();
           
@@ -128,5 +124,7 @@ export class BuildingAddComponent implements OnInit {
         console.log(err);
       }
     );
-  }
+  }else {
+    this.toast.typeWarning()
+  }}
 }

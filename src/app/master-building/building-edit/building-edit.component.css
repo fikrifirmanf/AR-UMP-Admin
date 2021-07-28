@@ -1,0 +1,16 @@
+#my-node {
+    /* border: 2px solid rgba(28,110,164,0.53);
+    border-radius: 28px; */
+    border-radius: 31px 31px 31px 31px;
+-moz-border-radius: 31px 31px 31px 31px;
+-webkit-border-radius: 31px 31px 31px 31px;
+    background-color: #bd28d4;
+        width: 40%;
+        float: left;
+        margin: auto;
+    
+    }
+agm-map {
+        height: 100px;
+        
+      }

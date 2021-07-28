@@ -1,1 +1,127 @@
-<p>building-edit works!</p>
+<!-- Basic form layout section start -->
+<section id="basic-form-layouts">
+    <div class="row text-left">
+        <div class="col-sm-12">
+            <div class="content-header">{{title}}</div>
+        </div>
+    </div>
+
+    <div class="row text-left">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-content">
+                    <div class="px-3">
+                        <form class="form form-horizontal form-bordered" (ngSubmit)="onSubmit(f)" #f="ngForm">
+                            <div class="form-body">
+                                <h4 class="form-section"><i class="ft-info"></i> Tambah Data</h4>
+                                <agm-map [latitude]="lat" [longitude]="lng" [zoom]=18 [zoomControl]="false" >
+                                    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                                </agm-map>
+                                <button style="margin-top: 10px" type="button" (click)="getPosition()" class="btn btn-raised btn-warning mr-1">
+                                    <i class="fa fa-map-marker"></i> Get LatLong
+                                </button>
+                                <p>Akurasi : {{accuracy + ' meter'}}</p>
+                                <div class="row">
+                                    
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="uniqueName">Gedung ID</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="uniqueName" class="form-control border-primary"
+                                                    placeholder="J" [ngModel]="dataList.uniqueName" name="uniqueName">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="name">Nama Gedung</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="name" class="form-control border-primary"
+                                                    placeholder="Fakultas Psikologi" (input)="namaGedung($event)"  [ngModel]="dataList.name" name="name">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="desc">Deskripsi</label>
+                                            <div class="col-md-9">
+                        
+                                                    <textarea id="desc" rows="5" class="form-control border-primary" [ngModel]="dataList.desc" (input)="descGedung($event)" name="desc"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="lat">Latitude</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control border-primary" value="{{lat}}"
+                                                    placeholder="latitude" id="timesheetinput5" name="lat"
+                                                    type="text" [ngModel]="dataList.lat">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="long">Longitude</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control border-primary"
+                                                    placeholder="longitude" value="{{lng}}" id="timesheetinput5" name="long"
+                                                    type="text" [ngModel]="dataList.long">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="typeBuilding">Jenis Gedung</label>
+                                            <div class="col-md-9">
+                                                <select id="typeBuilding" [ngModel]="dataList.typeBuilding" name="typeBuilding" class="form-control border-primary">
+                                                  
+                                                    <option value="fakultas">Fakultas</option>
+                                                    <option value="lain">Lain-lain</option>
+                                                  </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <br>
+                                    <div id="my-node" style="padding: 10px;">
+                                        <h4 style="text-align: center;color: white;">{{namaGedunge}}</h4>
+                                        <p style="color: white;">{{desc}}</p>
+                            </div>
+                           
+                            <div hidden id="imge">
+                                    
+                            </div>
+                            <br>
+                            <br><br>
+                            <div id="loadeng">
+                                    
+                            </div>
+                            <!-- <input class="form-control border-primary"
+                                                    placeholder="imgurl" value="{{dataList.imgurl}}" id="timesheetinput5" name="imgurl"
+                                                    type="text" [ngModel]="dataList.imgurl"> -->
+                            <div class="form-actions right">
+                                <button type="button" (click)="genImg()" class="btn btn-raised btn-info mr-1">
+                                    <i class="fa fa-file-image-o"></i> Get Image
+                                </button>
+                                <button type="button" class="btn btn-raised btn-warning mr-1">
+                                    <i class="ft-x"></i> Batal
+                                </button>
+                                <button type="submit" class="btn btn-raised btn-primary">
+                                    <i class="fa fa-check-square-o"></i> Simpan
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
