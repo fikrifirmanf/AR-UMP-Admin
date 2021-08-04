@@ -6,6 +6,10 @@ import { Title } from "@angular/platform-browser";
 import { AuthService } from "app/services/auth.service";
 import { UsersService } from "app/services/users.service";
 import { FormToastrService } from "app/services/toastr.service";
+import { StatisticsService } from "app/services/statistics.service";
+import * as mapboxgl from 'mapbox-gl';
+import { env } from "app/url.constants";
+
 
 declare var require: any;
 
@@ -30,14 +34,22 @@ export class Dashboard1Component implements OnInit, AfterViewInit {
     private titleServ: Title,
     public toast:FormToastrService,
     private authServ: AuthService,
-    private userServ: UsersService
+    private userServ: UsersService,
+    private statServ: StatisticsService
   ) {}
+  map: mapboxgl.Map;
+  style = 'mapbox://styles/mapbox/streets-v11';
+
+
+  statistics:any
   tgl;
   lat: number = -7.412207679837826;
   lng: number = 109.27170037031276;
   // Line area chart configuration Starts
   ngOnInit() {
     this.checkUser();
+    this.showStatistik()
+    this.mapbox()
   }
   ngAfterViewInit() {
 
@@ -58,10 +70,9 @@ export class Dashboard1Component implements OnInit, AfterViewInit {
   }
 
   statistikList = {
-    totalUser: 0,
-    rental: 0,
-    travel: 0,
-    coachbus: 0,
+    totalUsers: 0,
+    totalBuilding: 0,
+   
   };
   transRentalList = [];
   chartDataRental = {
@@ -69,23 +80,31 @@ export class Dashboard1Component implements OnInit, AfterViewInit {
     series: [[], []],
   };
 
-  // showStatistik() {
-  //   this.statistikServ.getAll().subscribe(
-  //     (resp) => {
-  //       this.statistikList.totalUser = resp["data"]["totalUser"];
-  //       this.statistikList.rental =
-  //         resp["data"].totalTransaksiRental[0].totalTransaksi;
-  //       this.statistikList.travel =
-  //         resp["data"].totalTransaksiTravel[0].totalTransaksi;
-  //       this.statistikList.coachbus =
-  //         resp["data"].totalTransaksiCoachBus[0].totalTransaksi;
-  //       // console.log(resp["data"]);
-  //     },
-  //     (err) => {
-  //       console.log(err);
-  //     }
-  //   );
-  // }
+  mapbox(){
+    Object.getOwnPropertyDescriptor(mapboxgl, "accessToken").set(env.mapboxToken);
+   
+      this.map = new mapboxgl.Map({
+        container: 'map',
+        style: this.style,
+        zoom: 13,
+        center: [this.lng, this.lat]
+    });
+    // Add map controls
+    this.map.addControl(new mapboxgl.NavigationControl());
+  }
+  
+  showStatistik() {
+    this.statServ.getAll().subscribe(
+      (resp) => {
+        this.statistikList.totalBuilding =  resp["data"]["totalBuilding"]
+        this.statistikList.totalUsers =  resp["data"]["totalUsers"]
+        
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
 
   
   // Line area chart configuration Ends

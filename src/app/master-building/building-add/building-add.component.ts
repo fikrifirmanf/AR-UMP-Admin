@@ -16,6 +16,8 @@ export class BuildingAddComponent implements OnInit {
   debounceTime = 500;
   namaGedunge
   desc
+  wakeUpArea
+  dateBuild
   lat: number = -7.412207679837826;
   lng: number = 109.27170037031276;
   accuracy: number = 0
@@ -34,6 +36,8 @@ export class BuildingAddComponent implements OnInit {
     desc: "",
     lat: 0,
     long: 0,
+    wakeUpArea: 0,
+    dateBuild: "",
     imgurl: "",
     typeBuilding: ""
   }
@@ -45,8 +49,8 @@ export class BuildingAddComponent implements OnInit {
   };
   getPosition(){
     navigator.geolocation.getCurrentPosition((pos)=>{
-    this.lat = pos.coords.latitude
-    this.lng = pos.coords.longitude
+    this.dataList.lat = pos.coords.latitude
+    this.dataList.long = pos.coords.longitude
     this.accuracy = pos.coords.accuracy
     console.log('Your current position is:');
     console.log(`Latitude : ${pos.coords.latitude}`);
@@ -63,7 +67,15 @@ export class BuildingAddComponent implements OnInit {
     this.desc = event.target.value
     
   }
-
+  
+  luasGedung(event){
+    this.wakeUpArea = event.target.value
+    
+  }
+  tglGedung(event){
+    this.dateBuild = event.target.value
+    
+  }
   
 
   genImg(){
@@ -96,10 +108,12 @@ export class BuildingAddComponent implements OnInit {
     this.dataList.imgurl = document.getElementById('imge').textContent
     this.dataList.name = form.controls["name"].value
     this.dataList.desc = form.controls["desc"].value
-    this.dataList.lat = form.controls['lat'].value != "" ?form.controls['lat'].value:this.lat
-    this.dataList.long = form.controls['long'].value != "" ?form.controls['long'].value:this.lat
+    // this.dataList.lat = form.controls['lat'].value != "" ?form.controls['lat'].value:this.lat
+    // this.dataList.long = form.controls['long'].value != "" ?form.controls['long'].value:this.lng
     this.dataList.typeBuilding = form.controls["typeBuilding"].value
     this.dataList.uniqueName = form.controls["uniqueName"].value
+    this.dataList.dateBuild = form.controls["dateBuild"].value
+    this.dataList.wakeUpArea = form.controls["wakeUpArea"].value
     
     console.log("rrq "+ this.dataList.imgurl)
     console.log(this.lat)

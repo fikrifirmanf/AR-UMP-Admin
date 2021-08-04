@@ -23,21 +23,7 @@
                         {{ value }}
                     </ng-template>
                 </ngx-datatable-column>
-                <ngx-datatable-column name="Email">
-                    <ng-template let-value="value" ngx-datatable-cell-template>
-                        {{ value }}
-                    </ng-template>
-                </ngx-datatable-column>
-                <ngx-datatable-column prop="mobileNum" name="No HP">
-                    <ng-template let-value="value" ngx-datatable-cell-template>
-                        {{ value }}
-                    </ng-template>
-                </ngx-datatable-column>
-                <ngx-datatable-column prop="address" [width]="300" name="Alamat">
-                    <ng-template let-value="value" ngx-datatable-cell-template>
-                        {{ value }}
-                    </ng-template>
-                </ngx-datatable-column>
+               
                 <ngx-datatable-column name="Aksi" sortable="false" prop="_id">
                     <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                         {{column.name}}

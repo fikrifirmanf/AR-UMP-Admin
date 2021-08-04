@@ -26,8 +26,10 @@
 :host /deep/ .lineArea .ct-point {
     stroke-width: 0px;
 }
-agm-map {
+
+  mgl-map {
     height: 400px;
+    // width: 100%;
   }
 
 // Line with Area Chart 1 CSS Ends

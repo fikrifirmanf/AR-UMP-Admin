@@ -54,22 +54,44 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-md-3 label-control" for="lat">Latitude</label>
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="wakeUpArea">Luas Gedung (m2)</label>
                                             <div class="col-md-9">
-                                                <input class="form-control border-primary" value="{{lat}}"
-                                                    placeholder="latitude" id="timesheetinput5" name="lat"
-                                                    type="text" [ngModel]="dataList.lat">
+                        
+                                                <input class="form-control border-primary" 
+                                                placeholder="0" id="timesheetinput5" name="wakeUpArea"
+                                                type="number" (input)="luasGedung($event)" ngModel>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="dateBuild">Luas Gedung (m2)</label>
+                                            <div class="col-md-9">
+                        
+                                                <input class="form-control border-primary" 
+                                                placeholder="0" id="timesheetinput5" name="dateBuild"
+                                                type="date" (input)="tglGedung($event)" ngModel>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="lat">Latitude</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control border-primary" 
+                                                    placeholder="latitude" id="timesheetinput5" name="lat"
+                                                    type="text" [(ngModel)]="dataList.lat">
+                                            </div>
+                                        </div>
+                                    </div>  
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
                                             <label class="col-md-3 label-control" for="long">Longitude</label>
                                             <div class="col-md-9">
                                                 <input class="form-control border-primary"
-                                                    placeholder="longitude" value="{{lng}}" id="timesheetinput5" name="long"
-                                                    type="text" ngModel>
+                                                    placeholder="longitude" id="timesheetinput5" name="long"
+                                                    type="text" [(ngModel)]="dataList.long">
                                             </div>
                                         </div>
                                     </div>
@@ -92,7 +114,9 @@
                             <br>
                                     <div id="my-node" style="padding: 10px;">
                                         <h4 style="text-align: center;color: white;">{{namaGedunge}}</h4>
-                                        <p style="color: white;">{{desc}}</p>
+                                        <p style="color: white;">Sebagai {{desc}}</p>
+                                        <p style="color: white;">Tanggal Dibangun : {{dateBuild}}</p>
+                                        <p style="color: white;">Luas : {{wakeUpArea}} m2</p>
                             </div>
                            
                             <div hidden id="imge">

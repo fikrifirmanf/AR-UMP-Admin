@@ -6,7 +6,7 @@
 				<div class="card-body pt-2 pb-0">
 					<div class="media">
 						<div class="media-body white text-left">
-							<h3 class="font-large-1 mb-0">{{statistikList.totalUser}}</h3>
+							<h3 class="font-large-1 mb-0">{{statistikList.totalUsers}}</h3>
 							<span>Total Users</span>
 						</div>
 						<div class="media-right white text-right">
@@ -30,7 +30,7 @@
 					<div class="media">
 						<div class="media-body white text-left">
 							<h3 class="font-large-1 mb-0">
-								{{statistikList.rental}}
+								{{statistikList.totalBuilding}}
 							</h3>
 							<span>Total Gedung</span>
 						</div>
@@ -63,9 +63,8 @@
 			</div>
 			<div class="card-content">
 				<div class="card-body">
-					<agm-map [latitude]="lat" [longitude]="lng" [zoom]=18 >
-						<agm-marker [latitude]="lat" [longitude]="lng" [markerClickable]="true" (markerClick)="clickedMarker(lat,lng)"></agm-marker>
-					</agm-map>
+					<div class="map" id="map"></div>
+
 				</div>
 			</div>
 		</div>

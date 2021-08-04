@@ -61,6 +61,11 @@
                         {{ value }}
                     </ng-template>
                 </ngx-datatable-column>
+                <ngx-datatable-column prop="wakeUpArea" name="Luas (m2)">
+                    <ng-template let-value="value" ngx-datatable-cell-template>
+                        {{ value }}
+                    </ng-template>
+                </ngx-datatable-column>
                 
 
                 <ngx-datatable-column name="Aksi" sortable="false" prop="_id">
@@ -68,9 +73,9 @@
                         {{column.name}}
                     </ng-template>
                     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                        <a [routerLink]="['detail',value]"><button class="btn btn-primary btn-fab mr-2">
+                        <button (click)="htmlAlert(value)" class="btn btn-primary btn-fab mr-2">
                             <i class="ft ft-eye"></i>
-                        </button></a>
+                        </button>
                         <a [routerLink]="['/building/edit',value]"><button class="btn btn-warning btn-fab mr-2">
                                 <i class="ft ft-edit"></i>
                             </button></a>
