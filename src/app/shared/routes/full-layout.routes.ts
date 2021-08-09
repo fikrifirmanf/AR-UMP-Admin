@@ -16,13 +16,7 @@ export const Full_ROUTES: Routes = [
       ),
   },
  
-  {
-    path: "travel",
-    loadChildren: () =>
-      import("../../master-travel/master-travel.module").then(
-        (m) => m.MasterTravelModule
-      ),
-  },
+  
   {
     path: "building",
     loadChildren: () =>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { BuildingService } from 'app/services/building.service';
 import { FormToastrService } from 'app/services/toastr.service';
+import { ToastrService } from "ngx-toastr";
 import * as htmlToImage from 'html-to-image';
 
 @Component({
@@ -24,7 +25,8 @@ export class BuildingAddComponent implements OnInit {
   constructor(
    
     private buildingServ: BuildingService,
-    private toast: FormToastrService
+    private toast: FormToastrService,
+    public toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
