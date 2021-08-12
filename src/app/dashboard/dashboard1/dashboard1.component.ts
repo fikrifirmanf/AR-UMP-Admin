@@ -8,7 +8,10 @@ import { UsersService } from "app/services/users.service";
 import { FormToastrService } from "app/services/toastr.service";
 import { StatisticsService } from "app/services/statistics.service";
 import * as mapboxgl from 'mapbox-gl';
+import { environment } from "environments/environment";
+// import * as mapboxgl from 'mapbox-gl';
 import { env } from "app/url.constants";
+import { BuildingService } from "app/services/building.service";
 
 
 declare var require: any;
@@ -35,11 +38,18 @@ export class Dashboard1Component implements OnInit, AfterViewInit {
     public toast:FormToastrService,
     private authServ: AuthService,
     private userServ: UsersService,
-    private statServ: StatisticsService
-  ) {}
+    private statServ: StatisticsService,
+    private buidlServ: BuildingService
+  ) {
+    mapboxgl.accessToken = environment.mapbox.accessToken;
+  }
+
+
   map: mapboxgl.Map;
   style = 'mapbox://styles/mapbox/streets-v11';
-
+  // latt = 45.899977;
+  // lngg = 6.172652;
+  zoom = 15
 
   statistics:any
   tgl;
@@ -47,9 +57,29 @@ export class Dashboard1Component implements OnInit, AfterViewInit {
   lng: number = 109.27170037031276;
   // Line area chart configuration Starts
   ngOnInit() {
+    this.buildMap()
     this.checkUser();
     this.showStatistik()
-    this.mapbox()
+   
+  }
+  buildMap() {
+    this.buidlServ.getAll().subscribe((resp)=>{
+      for (let i = 0; i < resp["data"].length; i++) {
+        
+        const marker1 = new mapboxgl.Marker()
+  .setLngLat([resp["data"][i]['long'], resp["data"][i]['lat']]).setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+  .setHTML('<h4>' + resp["data"][i]['name'] + '</h4><p>' + resp["data"][i]['desc'] + '</p>'))
+  .addTo(this.map);
+      }
+    },(err)=>console.log(err))
+    this.map = new mapboxgl.Map({
+      container: 'map',
+      style: this.style,
+      zoom: this.zoom,
+      center: [this.lng, this.lat]
+    })
+   this.map.addControl(new mapboxgl.NavigationControl());
+   
   }
   ngAfterViewInit() {
 
@@ -80,18 +110,7 @@ export class Dashboard1Component implements OnInit, AfterViewInit {
     series: [[], []],
   };
 
-  mapbox(){
-    Object.getOwnPropertyDescriptor(mapboxgl, "accessToken").set(env.mapboxToken);
-   
-      this.map = new mapboxgl.Map({
-        container: 'map',
-        style: this.style,
-        zoom: 13,
-        center: [this.lng, this.lat]
-    });
-    // Add map controls
-    this.map.addControl(new mapboxgl.NavigationControl());
-  }
+  
   
   showStatistik() {
     this.statServ.getAll().subscribe(

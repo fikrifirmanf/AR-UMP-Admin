@@ -27,9 +27,18 @@
     stroke-width: 0px;
 }
 
-  mgl-map {
-    height: 400px;
-    // width: 100%;
+.map-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+.mapboxgl-popup {
+    max-width: 150px;
+  }
+  
+  .mapboxgl-popup-content {
+    text-align: center;
+    
   }
 
 // Line with Area Chart 1 CSS Ends

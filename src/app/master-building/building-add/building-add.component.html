@@ -14,9 +14,7 @@
                         <form class="form form-horizontal form-bordered" (ngSubmit)="onSubmit(f)" #f="ngForm">
                             <div class="form-body">
                                 <h4 class="form-section"><i class="ft-info"></i> Tambah Data</h4>
-                                <agm-map [latitude]="lat" [longitude]="lng" [zoom]=18 [zoomControl]="false" >
-                                    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-                                </agm-map>
+                                <div style="margin-top: 0px;height: 150px;" id="map" class="map-container"> </div>
                                 <button style="margin-top: 10px" type="button" (click)="getPosition()" class="btn btn-raised btn-warning mr-1">
                                     <i class="fa fa-map-marker"></i> Get LatLong
                                 </button>
@@ -66,7 +64,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row last">
-                                            <label class="col-md-3 label-control" for="dateBuild">Luas Gedung (m2)</label>
+                                            <label class="col-md-3 label-control" for="dateBuild">Tanggal Perolehan</label>
                                             <div class="col-md-9">
                         
                                                 <input class="form-control border-primary" 

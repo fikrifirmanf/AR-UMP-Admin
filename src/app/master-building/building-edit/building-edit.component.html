@@ -13,10 +13,8 @@
                     <div class="px-3">
                         <form class="form form-horizontal form-bordered" (ngSubmit)="onSubmit(f)" #f="ngForm">
                             <div class="form-body">
-                                <h4 class="form-section"><i class="ft-info"></i> Tambah Data</h4>
-                                <agm-map [latitude]="lat" [longitude]="lng" [zoom]=18 [zoomControl]="false" >
-                                    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-                                </agm-map>
+                                <h4 class="form-section"><i class="ft-info"></i> Ubah Data</h4>
+                                <div style="margin-top: 0px;height: 150px;" id="map" class="map-container"> </div>
                                 <button style="margin-top: 10px" type="button" (click)="getPosition()" class="btn btn-raised btn-warning mr-1">
                                     <i class="fa fa-map-marker"></i> Get LatLong
                                 </button>
@@ -66,7 +64,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row last">
-                                            <label class="col-md-3 label-control" for="dateBuild">Luas Gedung (m2)</label>
+                                            <label class="col-md-3 label-control" for="dateBuild">Tanggal Perolehan</label>
                                             <div class="col-md-9">
                         
                                                 <input class="form-control border-primary" 
@@ -113,15 +111,15 @@
                             </div>
                             <br>
                                     <div id="my-node" style="padding: 16px;">
-                                        <h5 style="text-align: center;color: white;">{{namaGedunge}}</h5>
-                                        <p style="color: white;">Sebagai {{desc}}</p>
-                                        <p style="color: white;">Tanggal Perolehan : {{dateBuild}}</p>
-                                        <p style="color: white;">Luas : {{wakeUpArea}} m2</p>
+                                        <h5 style="text-align: center;color: white;">{{namaGedunge === ''?dataList.name:namaGedunge}}</h5>
+                                        <p style="color: white;">Sebagai {{desc === ''?dataList.desc:desc}}</p>
+                                        <p style="color: white;">Tanggal Perolehan : {{dateBuild === ''?dataList.dateBuild: dateBuild}}</p>
+                                        <p style="color: white;">Luas : {{wakeUpArea === 0?dataList.wakeUpArea:wakeUpArea}} m2</p>
                             </div>
                            
-                            <div hidden id="imge">
+                            <!-- <div id="imge">
                                     
-                            </div>
+                            </div> -->
                             <br>
                             <br><br>
                             <div id="loadeng">
@@ -137,6 +135,7 @@
                                 <button type="button" class="btn btn-raised btn-warning mr-1">
                                     <i class="ft-x"></i> Batal
                                 </button>
+                                
                                 <button type="submit" class="btn btn-raised btn-primary">
                                     <i class="fa fa-check-square-o"></i> Simpan
                                 </button>

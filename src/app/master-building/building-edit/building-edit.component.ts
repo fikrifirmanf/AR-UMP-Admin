@@ -3,7 +3,10 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { BuildingService } from 'app/services/building.service';
 import { FormToastrService } from 'app/services/toastr.service';
+import { environment } from 'environments/environment';
 import * as htmlToImage from 'html-to-image';
+import * as mapboxgl from 'mapbox-gl';
+
 
 @Component({
   selector: 'app-building-edit',
@@ -14,23 +17,32 @@ import * as htmlToImage from 'html-to-image';
 export class BuildingEditComponent implements OnInit {
 
   title = "Edit Gedung";
-  
+  map: mapboxgl.Map;
+  style = 'mapbox://styles/mapbox/streets-v11';
+  // latt = 45.899977;
+  // lngg = 6.172652;
+  zoom = 15
   debounceTime = 500;
-  namaGedunge
-  desc
-  wakeUpArea
-  dateBuild
+  namaGedunge = ""
+  desc = ""
+  wakeUpArea = 0
+  dateBuild = ""
   id;
   lat: number = 0;
   lng: number = 0;
   accuracy: number = 0
-  constructor(private toast:FormToastrService,private buildingServ: BuildingService, private route:ActivatedRoute) { }
+  imgStatus = false;
+  constructor(private toast:FormToastrService,private buildingServ: BuildingService, private route:ActivatedRoute) {
+    mapboxgl.accessToken = environment.mapbox.accessToken;
+   }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get("id")
-  
+    localStorage.removeItem('img')
     this.getById()
+    this.buildMap();
     this.getPosition()
+    console.log(localStorage.getItem('img'))
   }
   options = {
     enableHighAccuracy: true,
@@ -59,6 +71,20 @@ export class BuildingEditComponent implements OnInit {
     console.log(`More or less ${pos.coords.accuracy} meters.`);
     },(err)=>console.log(`Error ${err.code} : ${err.message}`),(this.options));
   }
+  buildMap() {
+    
+    this.map = new mapboxgl.Map({
+      container: 'map',
+      style: this.style,
+      zoom: this.zoom,
+      center: [this.dataList.long, this.dataList.lat]
+    })
+   this.map.addControl(new mapboxgl.NavigationControl());
+   const marker1 = new mapboxgl.Marker()
+  .setLngLat([this.dataList.long, this.dataList.lat])
+  .addTo(this.map);
+  }
+  
   
   namaGedung(event){
     this.namaGedunge = event.target.value == "" ? this.dataList.name : event.target.value
@@ -81,18 +107,23 @@ export class BuildingEditComponent implements OnInit {
 
   genImg(){
     var node = document.getElementById('my-node');
+    localStorage.removeItem('img')
 
     htmlToImage.toPng(node)
       .then(function (dataUrl) {
-        
+        localStorage.setItem('getImg','true')
+        localStorage.setItem('img',dataUrl)
         // var img =  document.getElementById('imgurl');
         // img.innerText = dataUrl;
        
-        var txt = dataUrl == "" ? document.createTextNode("loading...") : document.createTextNode(dataUrl)
-        var loaded = dataUrl == "" ? document.createTextNode("loading...") : document.createTextNode("Konversi sukses!")
+        // var txt = dataUrl == "" ? document.createTextNode("loading...") : document.createTextNode(dataUrl)
+        var loaded = dataUrl == "" ? document.createTextNode("loading...") : window.alert('Konversi sukses')
         
-        document.getElementById('loadeng').appendChild(loaded)
-        document.getElementById('imge').appendChild(txt)
+        // document.getElementById('loadeng').appendChild(loaded)
+        
+        // document.getElementById('imge').appendChild(txt)
+       
+        
         console.log(dataUrl)
         
         
@@ -101,8 +132,11 @@ export class BuildingEditComponent implements OnInit {
         console.error('oops, something went wrong!', error);
       });
    
-    console.log("WOYYY "+document.getElementById('imge').textContent)
-    console.log("eawsease "+document.getElementById('imge').textContent)
+    // console.log("WOYYY "+document.getElementById('imge').textContent)
+    // console.log("eawsease "+document.getElementById('imge').textContent)
+    if(localStorage.getItem('img') != null){
+      this.toast.typeSuccess()
+    }
   }
 
   getById(){
@@ -114,7 +148,8 @@ export class BuildingEditComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    this.dataList.imgurl = document.getElementById('imge').textContent
+    
+    this.dataList.imgurl = localStorage.getItem('img')
     this.dataList.name = form.controls["name"].value
     this.dataList.desc = form.controls["desc"].value
     // this.dataList.lat = form.controls['lat'].value != "" ?form.controls['lat'].value:this.lat
@@ -124,11 +159,12 @@ export class BuildingEditComponent implements OnInit {
     this.dataList.dateBuild = form.controls["dateBuild"].value
     this.dataList.wakeUpArea = form.controls["wakeUpArea"].value
 
-    if(this.dataList.imgurl != ""){
+    if(localStorage.getItem('img') != null && localStorage.getItem('getImg') == 'true'){
 
     this.buildingServ.update(this.id, this.dataList).subscribe(
       (resp) => {
         if (resp["message"] == "Updated successfully") {
+          localStorage.setItem('getImg','false')
           this.toast.typeSuccess();
           // this.router.navigateByUrl(
           //   "users/" + (form.controls["userType"].value == "coachbus")
@@ -145,6 +181,8 @@ export class BuildingEditComponent implements OnInit {
       }
     );
     
+  }else if(localStorage.getItem('getImg') == 'false') {
+    this.toast.typeWarning();
   }else {
     this.toast.typeWarning();
   }

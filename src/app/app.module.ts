@@ -58,6 +58,10 @@ export function createTranslateLoader(http: HttpClient) {
 
   ],
   imports: [
+    // NgxMapboxGLModule.withConfig({
+    //   accessToken: 'pk.eyJ1IjoiZmlrcmlmaXJtYW5mIiwiYSI6ImNrcnQ1dW85ZjBwNjgyd21sNHRndmQycWQifQ.Sp0nK0rdYXbPhn7hb4wVTQ', // Optional, can also be set per map (accessToken input of mgl-map)
+    //   // geocoderAccessToken: 'TOKEN' // Optional, specify if different from the map access token, can also be set per mgl-geocoder (accessToken input of mgl-geocoder)
+    // }),
     BrowserModule,
     BrowserAnimationsModule,
     StoreModule.forRoot({}),
